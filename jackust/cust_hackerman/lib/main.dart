@@ -1,3 +1,4 @@
+import 'package:cust_hackerman/Models/route_generator.dart';
 import 'package:flutter/material.dart';
 
 void main(){
@@ -8,10 +9,11 @@ class MyWeb extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      routes: {},
-      initialRoute: '',
-      theme: ThemeData.light(),
-      debugShowCheckedModeBanner: false,
+          theme: ThemeData.light(),
+          debugShowCheckedModeBanner: false,
+          initialRoute: '/shopinfo',
+          onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
 }
+
