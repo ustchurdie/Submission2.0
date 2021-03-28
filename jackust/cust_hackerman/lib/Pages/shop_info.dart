@@ -14,16 +14,21 @@ class ShopInfo extends StatelessWidget {
           Expanded(
             flex: 4,
             child: Container(
+              width: double.infinity,
               color: Colors.red,
+              child: Text('Food Style: \n TakeAway? \n Vegan? \n Available Seats:'),
             ),
           ),
           Expanded(
             flex: 4,
-            child: Container(color: Colors.purple),
+            child: Container(
+              width: double.infinity,
+              color: Colors.purple,
+            child: Text('Shop Location: \n Opening Hours:'),
+            ),
           )
         ],
       ),
-      drawer: Drawer(),
     );
   }
 }

@@ -10,7 +10,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       padding: EdgeInsets.all(8.0),
       color: Colors.green,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           ElevatedButton(
             style: ElevatedButton.styleFrom(
@@ -31,7 +31,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                   borderRadius: BorderRadius.all(Radius.circular(5))),
             ),
             onPressed: () {},
-            child: Text("Option 1")),
+            child: Text("Option 2")),
         ElevatedButton(
             style: ElevatedButton.styleFrom(
               padding: EdgeInsets.all(8.0),
@@ -41,7 +41,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                   borderRadius: BorderRadius.all(Radius.circular(5))),
             ),
             onPressed: () {},
-            child: Text("Option 1")),
+            child: Text("Option 3")),
         ],
       ),
     );
