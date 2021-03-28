@@ -4,12 +4,6 @@ import 'package:flutter/material.dart';
 
 class ShopInfo extends StatelessWidget {
   final Random random = new Random();
-  final List<Color> colors = [
-    Colors.green,
-    Colors.blue,
-    Colors.purple,
-    Colors.red
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +34,7 @@ class ShopInfo extends StatelessWidget {
                             rating:
                                 (random.nextDouble() * 5).toStringAsFixed(1),
                             review: random.nextInt(100),
-                            color: colors[random.nextInt(colors.length)],
+                            index: random.nextInt(3),
                           );
                         },
                         childCount: 20,
