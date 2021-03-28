@@ -37,9 +37,7 @@ class _HomePageState extends State<HomePage> {
             FoodCard(name: "Eggtart", rating: (random.nextDouble()*5).toStringAsFixed(1), eta: random.nextInt(30), review: random.nextInt(100), color: colors[random.nextInt(colors.length)],),
             FoodCard(name: "Eggtart", rating: (random.nextDouble()*5).toStringAsFixed(1), eta: random.nextInt(30), review: random.nextInt(100), color: colors[random.nextInt(colors.length)],),
             FoodCard(name: "Eggtart", rating: (random.nextDouble()*5).toStringAsFixed(1), eta: random.nextInt(30), review: random.nextInt(100), color: colors[random.nextInt(colors.length)],),
-            
-            
-
+          
           ],
         ),
       ),
