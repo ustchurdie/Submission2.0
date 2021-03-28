@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 
 class FoodCard extends StatefulWidget {
-  final String name;
   final int review;
   final String rating;
   final int index;
 
   const FoodCard(
       {Key key,
-      @required this.name,
       @required this.review,
       @required this.rating,
       @required this.index})
@@ -25,8 +23,8 @@ class _FoodCardState extends State<FoodCard> {
       _liked = !_liked;
     });
   }
-
-  List<String> image = ["hamburger.jpg", "noodle.jpg", "pot.jpg", "salad.jpg"];
+  final List<String> name = ["Hamburger", "Noodle", "Pot", "Salad"];
+  final List<String> image = ["hamburger.jpg", "noodle.jpg", "pot.jpg", "salad.jpg"];
 
   @override
   Widget build(BuildContext context) {
@@ -73,9 +71,9 @@ class _FoodCardState extends State<FoodCard> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     ListTile(
-                        title: Text(widget.name),
+                        title: Text(name[widget.index]),
                         subtitle: Text(
-                            '${widget.rating}     ${widget.review} reviews'),
+                            '${widget.review} reviews'),
                         trailing: _liked
                             ? IconButton(
                                 icon: Icon(Icons.favorite),
@@ -93,7 +91,7 @@ class _FoodCardState extends State<FoodCard> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('Stars'),
+                          Text('Stars:   ${widget.rating}'),
                           ElevatedButton(
                             onPressed: () {},
                             child: Row(

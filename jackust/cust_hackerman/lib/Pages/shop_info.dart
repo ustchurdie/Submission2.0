@@ -1,50 +1,16 @@
-import 'dart:math';
-import 'package:cust_hackerman/Widgets/FoodCard.dart';
+import 'package:cust_hackerman/Widgets/FoodCardScrollBar/FoodGrid.dart';
+import 'package:cust_hackerman/Widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 
 class ShopInfo extends StatelessWidget {
-  final Random random = new Random();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: CustomAppBar(),
       body: Column(
         children: [
-          Expanded(flex: 2, child: Container()),
-          Expanded(
-            flex: 15,
-            child: Container(
-              color: Colors.yellow[100],
-              child: CustomScrollView(
-                scrollDirection: Axis.horizontal,
-                slivers: [
-                  SliverPadding(
-                    padding: EdgeInsets.all(8.0),
-                    sliver: SliverGrid(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 1,
-                        mainAxisSpacing: 10.0,
-                        crossAxisSpacing: 10.0,
-                        childAspectRatio: 1.0,
-                      ),
-                      delegate: SliverChildBuilderDelegate(
-                        (BuildContext context, int index) {
-                          return FoodCard(
-                            name: "Eggtart",
-                            rating:
-                                (random.nextDouble() * 5).toStringAsFixed(1),
-                            review: random.nextInt(100),
-                            index: random.nextInt(3),
-                          );
-                        },
-                        childCount: 20,
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
+          FoodBar(),
           Expanded(
             flex: 4,
             child: Container(
@@ -57,6 +23,7 @@ class ShopInfo extends StatelessWidget {
           )
         ],
       ),
+      drawer: Drawer(),
     );
   }
 }
