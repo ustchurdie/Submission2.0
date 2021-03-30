@@ -12,6 +12,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
+          ElevatedButton(onPressed: (){Navigator.pop(context);}, child: Text('back')),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
               padding: EdgeInsets.all(8.0),
