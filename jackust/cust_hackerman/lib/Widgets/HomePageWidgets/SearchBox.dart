@@ -1,10 +1,12 @@
-import 'package:cust_hackerman/Widgets/HomePageWidgets/SearchResultListView.dart';
 import 'package:flutter/material.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
-class SearchBox extends StatefulWidget {
+class SearchBox extends StatefulWidget implements PreferredSizeWidget{
   @override
   _SearchBoxState createState() => _SearchBoxState();
+
+  @override
+  Size get preferredSize => new Size.fromHeight(60);
 }
 
 class _SearchBoxState extends State<SearchBox> {
@@ -66,6 +68,10 @@ class _SearchBoxState extends State<SearchBox> {
   @override
   Widget build(BuildContext context) {
     return FloatingSearchBar(
+      automaticallyImplyBackButton: false,
+      clearQueryOnClose: false,
+      closeOnBackdropTap: true,
+      width: MediaQuery.of(context).size.width*0.75,
       transition: ExpandingFloatingSearchBarTransition(),
       physics: ClampingScrollPhysics(),
       title: Text(selectedWordings ?? 'Search',),
@@ -102,7 +108,7 @@ class _SearchBoxState extends State<SearchBox> {
                 if(filteredSearchHistory.isEmpty && _searchBarController.query.isEmpty){
                   return Container(
                     height: 56,
-                    width: double.infinity,
+                    width: MediaQuery.of(context).size.width*0.75,
                     alignment: Alignment.center,
                     child: Text(
                       "Start Searching",
@@ -174,8 +180,8 @@ class SearchResultsListView extends StatelessWidget {
       children: List.generate(
         10,
         (index) => ListTile(
-          title: Text('$searchTerm search result'),
-          subtitle: Text(index.toString()),
+          leading: Text(index.toString()),
+          title: Text('$searchTerm'),
         ),
       ),
     );
