@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
             expandedHeight: 200,
             pinned: true,
             floating: true,
-            flexibleSpace: SearchBox(searchtxt: _searchtxt),
+            flexibleSpace: SearchBox(),
           ),
           SliverGrid(
               gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
