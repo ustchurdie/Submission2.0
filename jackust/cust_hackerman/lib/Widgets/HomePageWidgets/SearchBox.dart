@@ -1,5 +1,7 @@
+import 'package:cust_hackerman/Widgets/FoodCardScrollBar/FoodCard.dart';
 import 'package:flutter/material.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
+import 'package:cust_hackerman/Models/foodbase.dart';
 
 class SearchBox extends StatefulWidget implements PreferredSizeWidget{
   @override
@@ -174,17 +176,22 @@ class SearchResultsListView extends StatelessWidget {
     
     if(searchTerm == null){
       return Text('');
-    } else{
+    } else if (FoodModel.title.contains(searchTerm)){
     return ListView(
       padding: EdgeInsets.only(top: 56),
       children: List.generate(
-        10,
-        (index) => ListTile(
-          leading: Text(index.toString()),
-          title: Text('$searchTerm'),
+        5,
+        (index) => FoodCard(review: 3, rating: "sf", index: index, name: "$searchTerm",)
         ),
-      ),
-    );
+      );
+    }else {
+      return ListView(
+      padding: EdgeInsets.only(top: 56),
+      children: List.generate(
+        5,
+        (index) => FoodCard(review: 3, rating: "N/A", index: index, name: "$searchTerm",)
+        ),
+      );
     }
   }
 }

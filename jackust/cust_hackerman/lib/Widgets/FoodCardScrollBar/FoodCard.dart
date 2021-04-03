@@ -107,7 +107,7 @@ class _FoodCardState extends State<FoodCard> {
                           Text('Stars:   ${widget.rating}'),
                           ElevatedButton(
                             onPressed: () {
-                              Navigator.pushNamed(context, '/foodtemplate3', arguments: ScreenArguments(name: name[widget.index], foodId: "asdasgasgasgsasd") );
+                              Navigator.pushNamed(context, '/foodtemplate3', arguments: ScreenArguments(name: name[widget.index], foodId: "generatefromthedatabase") );
                             },
                             child: Row(
                                 mainAxisAlignment:

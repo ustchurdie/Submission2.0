@@ -10,4 +10,12 @@ class FoodModel {
     final Map<String, double> taste; //Different level of taste; using star/bar chart to present
 
   FoodModel(this.ingredients, this.name, this.description, this.calories, this.unit, this.photo, this.taste);
+
+  static final  List<String> title = ["Hamburger", "Noodle", "Pot", "Salad"];
+  final List<String> demoImage = [
+    "hamburger.jpg",
+    "noodle.jpg",
+    "pot.jpg",
+    "salad.jpg"
+  ];
 }  
