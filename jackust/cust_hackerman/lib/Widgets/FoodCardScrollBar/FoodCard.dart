@@ -23,22 +23,30 @@ class _FoodCardState extends State<FoodCard> {
       _liked = !_liked;
     });
   }
+
   final List<String> name = ["Hamburger", "Noodle", "Pot", "Salad"];
-  final List<String> image = ["hamburger.jpg", "noodle.jpg", "pot.jpg", "salad.jpg"];
+  final List<String> image = [
+    "hamburger.jpg",
+    "noodle.jpg",
+    "pot.jpg",
+    "salad.jpg"
+  ];
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        height: 200,
+    return ClipRect(
+      child: Container(
+        height: 250,
         width: 250,
         child: Card(
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
           color: Colors.white,
-          child: Column(
+          child: Flex(
+            direction: Axis.vertical,
             children: [
               Expanded(
-                  flex: 10,
+                  flex: 7,
                   child: Stack(
                     children: [
                       Container(
@@ -46,7 +54,9 @@ class _FoodCardState extends State<FoodCard> {
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(10.0),
                             topRight: Radius.circular(10.0)),
-                        image: DecorationImage(image: AssetImage(image[widget.index]), fit: BoxFit.cover),
+                        image: DecorationImage(
+                            image: AssetImage(image[widget.index]),
+                            fit: BoxFit.cover),
                       )),
                       Positioned(
                           bottom: 5,
@@ -66,14 +76,15 @@ class _FoodCardState extends State<FoodCard> {
                     ],
                   )),
               Expanded(
-                flex: 7,
+                flex: 5,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     ListTile(
+                        isThreeLine: false,
                         title: Text(name[widget.index]),
-                        subtitle: Text(
-                            '${widget.review} reviews'),
+                        subtitle: Text('${widget.review} reviews'),
                         trailing: _liked
                             ? IconButton(
                                 icon: Icon(Icons.favorite),
@@ -111,6 +122,7 @@ class _FoodCardState extends State<FoodCard> {
             ],
           ),
         ),
+      ),
     );
   }
 }

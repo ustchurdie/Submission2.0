@@ -24,7 +24,7 @@ class ShopInfo extends StatelessWidget {
             child: Container(
               width: double.infinity,
               color: Colors.purple,
-            child: Text('Shop Location: \n Opening Hours:'),
+            child: Text('Suggested Combination \n Hyperlink'),
             ),
           )
         ],

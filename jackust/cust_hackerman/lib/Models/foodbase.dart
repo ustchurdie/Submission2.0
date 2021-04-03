@@ -10,4 +10,4 @@ class FoodModel {
     final Map<String, double> taste; //Different level of taste; using star/bar chart to present
 
   FoodModel(this.ingredients, this.name, this.description, this.calories, this.unit, this.photo, this.taste);
-}
+}  
