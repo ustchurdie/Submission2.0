@@ -1,6 +1,8 @@
+import 'package:cust_hackerman/Models/screen_arguments.dart';
 import 'package:flutter/material.dart';
 
 class FoodCard extends StatefulWidget {
+  final String name;
   final int review;
   final String rating;
   final int index;
@@ -9,7 +11,7 @@ class FoodCard extends StatefulWidget {
       {Key key,
       @required this.review,
       @required this.rating,
-      @required this.index})
+      @required this.index, this.name})
       : super(key: key);
 
   @override
@@ -104,7 +106,9 @@ class _FoodCardState extends State<FoodCard> {
                         children: [
                           Text('Stars:   ${widget.rating}'),
                           ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pushNamed(context, '/foodtemplate3', arguments: ScreenArguments(name: name[widget.index], foodId: "asdasgasgasgsasd") );
+                            },
                             child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,

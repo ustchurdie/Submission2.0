@@ -1,3 +1,4 @@
+import 'package:cust_hackerman/Models/screen_arguments.dart';
 import 'package:cust_hackerman/Pages/foodtemplate_1.dart';
 import 'package:cust_hackerman/Pages/foodtemplate_2.dart';
 import 'package:cust_hackerman/Pages/foodtemplate_3.dart';
@@ -9,6 +10,8 @@ import 'package:flutter/material.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
+    final args = settings.arguments;
+    ScreenArguments arguments = args;
    
     switch (settings.name) {
       case '/home':
@@ -21,8 +24,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => FoodTemplate1());
       case '/foodtemplate2':
         return MaterialPageRoute(builder: (_) => FoodTemplate2());
-      case '/foodtemplate2':
-        return MaterialPageRoute(builder: (_) => FoodTemplate3()); 
+      case '/foodtemplate3':
+        return MaterialPageRoute(builder: (_) => FoodTemplate3(foodName: arguments.name, foodId: arguments.foodId,)); 
       default:
         return _errorRoute();
     }
