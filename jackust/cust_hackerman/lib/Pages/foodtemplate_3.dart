@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_radar_chart/flutter_radar_chart.dart';
 
 class FoodTemplate3 extends StatefulWidget {
   final String foodName;
@@ -44,22 +45,29 @@ class _FoodTemplate3State extends State<FoodTemplate3> {
         ],
       ),
       body: SingleChildScrollView(
-              child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
+              child: Container(
+                child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Divider(height: 10, thickness: 2.0,),
-            Chip(label: Text("label")),
-            SizedBox(height: 50),
-            Divider(height: 10, thickness: 2.0,),
-            Chip(label: Text("label")),
-            SizedBox(height: 50),
-            Divider(height: 10, thickness: 2.0,),
-            Chip(label: Text("label")),
-            SizedBox(height: 50),
+            Container(height: 3000,color: Colors.red,),
+         Container(
+           height: 350,
+                    child: RadarChart(
+                  sides: 6,
+                  ticks: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+                  features: ["sour", "sweet", "salty", "oily", "bit", "spicy"],
+                  data: [[2, 3, 5, 6, 8, 1],
+                  [2, 6, 8, 7, 9, 3],
+                  [6, 3, 4, 7, 2, 1],
+                  [2, 1, 1, 1,2, 3]],
+              ),
+         ),
             
           ],
         ),
+              ),
       ),
     );
   }

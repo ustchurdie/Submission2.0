@@ -4,7 +4,7 @@ class FoodTemplate1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(automaticallyImplyLeading: false,),
+      appBar: AppBar(automaticallyImplyLeading: true,),
       body:  Container(
                 height: double.infinity,
                 width: double.infinity,

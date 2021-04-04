@@ -11,7 +11,7 @@ class MyWeb extends StatelessWidget {
     return MaterialApp(
           theme: ThemeData.light(),
           debugShowCheckedModeBanner: false,
-          initialRoute: '/home',
+          initialRoute: '/foodtemplate2',
           onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
