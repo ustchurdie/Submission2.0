@@ -40,9 +40,12 @@ class ContentPage extends StatelessWidget {
               ),
             ),
             PropertyBox(title: 'Description', textbelow: 'This is the section for the description of the food. Briefly describe the taste, maybe history? of the food. Add anything you want.',),
-            PropertyBox(title: 'Properties', textbelow: 'Anything la',),
             PropertyBox(title: 'Ingredients', textbelow: 'Anything la',),
+            PropertyBox(title: 'Properties', textbelow: 'Anything la',),
             PropertyBox(title: 'Allergies', textbelow: 'Anything la',),
+            PropertyBox(title: 'See Also/ Categories', textbelow: 'Anything la',),
+            Divider(height: 30, thickness: 1.0,),
+            Container(color: Colors.grey, height: 100, child: Center(child: Text('Contact/ Copy Right?'),),)
           ],
         ),
       ),
