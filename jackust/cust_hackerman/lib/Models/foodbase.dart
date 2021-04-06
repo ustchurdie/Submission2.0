@@ -11,11 +11,12 @@ class FoodModel {
 
   FoodModel(this.ingredients, this.name, this.description, this.calories, this.unit, this.photo, this.taste);
 
-  static final  List<String> title = ["Hamburger", "Noodle", "Pot", "Salad"];
-  final List<String> demoImage = [
+  static final  List<String> title = ["Hamburger", "Noodle", "Pot", "Salad", "Eggtart"];
+  static final List<String> demoImage = [
     "hamburger.jpg",
     "noodle.jpg",
     "pot.jpg",
-    "salad.jpg"
+    "salad.jpg",
+    "eggtart/1.jpg"
   ];
 }  

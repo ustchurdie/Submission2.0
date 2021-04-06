@@ -51,7 +51,7 @@ class _FoodTemplate3State extends State<FoodTemplate3> {
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Container(height: 3000,color: Colors.red,),
+            
          Container(
            height: 350,
                     child: RadarChart(

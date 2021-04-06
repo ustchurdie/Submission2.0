@@ -1,7 +1,6 @@
 import 'package:cust_hackerman/Widgets/FoodCardScrollBar/FoodCard.dart';
 import 'package:cust_hackerman/Widgets/HomePageWidgets/SearchBox.dart';
 import 'package:flutter/material.dart';
-import 'package:cust_hackerman/Widgets/FoodCardScrollBar/FoodGrid.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -20,10 +19,6 @@ class _HomePageState extends State<HomePage>
           SliverAppBar(
             collapsedHeight: 60,
             automaticallyImplyLeading: false,
-            iconTheme: IconThemeData(
-              color: Colors.green,
-            ),
-            backgroundColor: Colors.blue,
             expandedHeight: MediaQuery.of(context).size.height / 2,
             pinned: true,
             floating: false,
@@ -32,7 +27,7 @@ class _HomePageState extends State<HomePage>
                   image: DecorationImage(
                       image: AssetImage('background.jpg'), fit: BoxFit.cover),
                 ),
-                child: SearchBox()),
+                child: Positioned(top: 150, child: SearchBox())),
           ),
           // SliverPadding(
           //   padding: EdgeInsets.all(8.0),
@@ -46,6 +41,7 @@ class _HomePageState extends State<HomePage>
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children :[
                     MaterialButton(
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                       onPressed: (){
                         Navigator.pushNamed(context, '/foodtemplate1');
                       },
@@ -60,6 +56,20 @@ class _HomePageState extends State<HomePage>
                       color: Colors.deepOrange,
                       child: Text('Template 2'),
                     ),
+                    MaterialButton(
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                      onPressed: (){
+                        Navigator.pushNamed(context, '/shopinfo');
+                      },
+                      color: Colors.deepOrange,
+                      child: Text('Shop Info')),
+                      MaterialButton(
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                      onPressed: (){
+                        Navigator.pushNamed(context, '/shopdetail');
+                      },
+                      color: Colors.deepOrange,
+                      child: Text('Shop Detail')),
                   ]),
               ),
               Padding(

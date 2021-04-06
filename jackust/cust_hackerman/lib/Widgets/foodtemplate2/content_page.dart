@@ -13,7 +13,7 @@ class ContentPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.grey[300],
+      color: Color.fromRGBO(227, 253, 253, 1),
       height: double.infinity,
       width: double.infinity,
       child: SingleChildScrollView(
@@ -40,10 +40,11 @@ class ContentPage extends StatelessWidget {
               ),
             ),
             PropertyBox(title: 'Description', textbelow: 'This is the section for the description of the food. Briefly describe the taste, maybe history? of the food. Add anything you want.',),
-            PropertyBox(title: 'Ingredients', textbelow: 'Anything la',),
-            PropertyBox(title: 'Properties', textbelow: 'Anything la',),
-            PropertyBox(title: 'Allergies', textbelow: 'Anything la',),
-            PropertyBox(title: 'See Also/ Categories', textbelow: 'Anything la',),
+            PropertyBox(title: 'Ingredients', textbelow: 'Milk, Egg',),
+            PropertyBox(title: 'Properties', textbelow: 'Calories, Saturated/Trans-fat, sugar, sodium',),
+            PropertyBox(title: 'Options', textbelow: 'Puffy Pastry Eggtart / Shortcrust Pastry Eggtart',),
+            PropertyBox(title: 'Allergies', textbelow: 'Put some tagchips in here',),
+            PropertyBox(title: 'See Also/ Categories', textbelow: 'What did other users also looked for \nUsually for (breakfast/snacks/lunch/dinner)?',),
             Divider(height: 30, thickness: 1.0,),
             Container(color: Colors.grey, height: 100, child: Center(child: Text('Contact/ Copy Right?'),),)
           ],

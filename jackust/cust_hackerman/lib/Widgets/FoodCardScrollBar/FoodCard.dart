@@ -1,3 +1,4 @@
+import 'package:cust_hackerman/Models/foodbase.dart';
 import 'package:cust_hackerman/Models/screen_arguments.dart';
 import 'package:flutter/material.dart';
 
@@ -26,13 +27,6 @@ class _FoodCardState extends State<FoodCard> {
     });
   }
 
-  final List<String> name = ["Hamburger", "Noodle", "Pot", "Salad"];
-  final List<String> image = [
-    "hamburger.jpg",
-    "noodle.jpg",
-    "pot.jpg",
-    "salad.jpg"
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +51,7 @@ class _FoodCardState extends State<FoodCard> {
                             topLeft: Radius.circular(10.0),
                             topRight: Radius.circular(10.0)),
                         image: DecorationImage(
-                            image: AssetImage(image[widget.index]),
+                            image: AssetImage(FoodModel.demoImage[widget.index]),
                             fit: BoxFit.cover),
                       )),
                       Positioned(
@@ -85,7 +79,7 @@ class _FoodCardState extends State<FoodCard> {
                   children: [
                     ListTile(
                         isThreeLine: false,
-                        title: Text(name[widget.index]),
+                        title: Text(FoodModel.title[widget.index]),
                         subtitle: Text('${widget.review} reviews'),
                         trailing: _liked
                             ? IconButton(
@@ -107,7 +101,7 @@ class _FoodCardState extends State<FoodCard> {
                           Text('Stars:   ${widget.rating}'),
                           ElevatedButton(
                             onPressed: () {
-                              Navigator.pushNamed(context, '/foodtemplate3', arguments: ScreenArguments(name: name[widget.index], foodId: "generatefromthedatabase") );
+                              Navigator.pushNamed(context, '/foodtemplate3', arguments: ScreenArguments(name: FoodModel.title[widget.index], foodId: "generatefromthedatabase") );
                             },
                             child: Row(
                                 mainAxisAlignment:

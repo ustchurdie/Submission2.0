@@ -5,22 +5,55 @@ class VerticalTabBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height,
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [Colors.white, Colors.yellow[100]]
-        )
-      ),
+      color: Color.fromRGBO(166, 227, 233, 1),
       child: SingleChildScrollView(
         child: Column(
           children: [
-            Padding(padding: EdgeInsets.all(8.0), child: Container(height: 150, width: double.infinity,color: Color.fromRGBO(200, 100, 50, 0.5), child: Text('asd'),),),
-            Padding(padding: EdgeInsets.all(8.0), child: Container(height: 150, width: double.infinity,color: Colors.red, child: Text('asd'),),),
-            Padding(padding: EdgeInsets.all(8.0), child: Container(height: 150, width: double.infinity,color: Colors.red, child: Text('asd'),),),
-            Padding(padding: EdgeInsets.all(8.0), child: Container(height: 150, width: double.infinity,color: Colors.red, child: Text('asd'),),)
+            DrawerHeader(child: Text("This is a header")),
+            TabBarItem(),
+            TabBarItem(),
+            TabBarItem(),
+            TabBarItem(),
+            TabBarItem(),
+            TabBarItem(),
+            TabBarItem(),
+            TabBarItem(),
+            TabBarItem(),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class TabBarItem extends StatelessWidget {
+  const TabBarItem({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(8.0),
+      child: InkWell(
+        autofocus: true,
+        onTap: (){},
+              child: Container(
+            height: 60,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: Color.fromRGBO(113, 201, 206, 1),
+              borderRadius: BorderRadius.circular(5),
+            ),
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Expanded(flex:1, child: CircleAvatar(backgroundColor: Colors.white,)),
+                Expanded(flex: 5, child: Center(child: Text("This is a tab"))),
+                Expanded(flex: 5, child: Center(child: Text("This is a tab"))),
+              ],
+            )),
       ),
     );
   }

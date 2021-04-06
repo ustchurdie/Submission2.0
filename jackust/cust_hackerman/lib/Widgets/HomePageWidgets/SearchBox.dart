@@ -1,3 +1,4 @@
+import 'package:cust_hackerman/Models/screen_arguments.dart';
 import 'package:cust_hackerman/Widgets/FoodCardScrollBar/FoodCard.dart';
 import 'package:flutter/material.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
@@ -79,11 +80,6 @@ class _SearchBoxState extends State<SearchBox> {
       title: Text(selectedWordings ?? 'Search',),
       hint: 'What kind of food are you looking for?',
       controller: _searchBarController,
-      body: FloatingSearchBarScrollNotifier(
-        child: SearchResultsListView(
-          searchTerm: selectedWordings,
-        ),
-      ),
       actions: [
         FloatingSearchBarAction.searchToClear()
       ],
@@ -98,6 +94,7 @@ class _SearchBoxState extends State<SearchBox> {
           selectedWordings = query;
         });
         _searchBarController.close();
+        Navigator.pushNamed(context, '/searchresult', arguments: ScreenArguments(name: query));
       },
       builder: (ctx, transition){
         return ClipRRect(
@@ -160,39 +157,6 @@ class _SearchBoxState extends State<SearchBox> {
         );
       },
     );
-  }
-}
-class SearchResultsListView extends StatelessWidget {
-  final String searchTerm;
-
-  const SearchResultsListView({
-    Key key,
-    @required this.searchTerm,
-  }) : super(key: key);
-  
-
-  @override
-  Widget build(BuildContext context) {
-    
-    if(searchTerm == null){
-      return Text('');
-    } else if (FoodModel.title.contains(searchTerm)){
-    return ListView(
-      padding: EdgeInsets.only(top: 56),
-      children: List.generate(
-        5,
-        (index) => FoodCard(review: 3, rating: "sf", index: index, name: "$searchTerm",)
-        ),
-      );
-    }else {
-      return ListView(
-      padding: EdgeInsets.only(top: 56),
-      children: List.generate(
-        5,
-        (index) => FoodCard(review: 3, rating: "N/A", index: index, name: "$searchTerm",)
-        ),
-      );
-    }
   }
 }
 
