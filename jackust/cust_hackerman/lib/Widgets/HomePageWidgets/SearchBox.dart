@@ -1,8 +1,6 @@
 import 'package:cust_hackerman/Models/screen_arguments.dart';
-import 'package:cust_hackerman/Widgets/FoodCardScrollBar/FoodCard.dart';
 import 'package:flutter/material.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
-import 'package:cust_hackerman/Models/foodbase.dart';
 
 class SearchBox extends StatefulWidget implements PreferredSizeWidget{
   @override
