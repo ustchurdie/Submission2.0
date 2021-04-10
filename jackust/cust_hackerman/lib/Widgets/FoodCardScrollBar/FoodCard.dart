@@ -1,17 +1,14 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cust_hackerman/Models/foodbase.dart';
 import 'package:cust_hackerman/Models/screen_arguments.dart';
 import 'package:flutter/material.dart';
 
 class FoodCard extends StatefulWidget {
   final String name;
-  final int review;
-  final String rating;
   final int index;
 
   const FoodCard(
       {Key key,
-      @required this.review,
-      @required this.rating,
       @required this.index, this.name})
       : super(key: key);
 
@@ -51,7 +48,7 @@ class _FoodCardState extends State<FoodCard> {
                             topLeft: Radius.circular(10.0),
                             topRight: Radius.circular(10.0)),
                         image: DecorationImage(
-                            image: AssetImage(FoodModel.demoImage[widget.index]),
+                            image: AssetImage(CCTBreakfast.cctBreakfastImages[widget.index]),
                             fit: BoxFit.cover),
                       )),
                       Positioned(
@@ -72,33 +69,41 @@ class _FoodCardState extends State<FoodCard> {
                     ],
                   )),
               Expanded(
-                flex: 5,
+                flex: 6,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
+                  mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    ListTile(
-                        isThreeLine: false,
-                        title: Text(FoodModel.title[widget.index]),
-                        subtitle: Text('${widget.review} reviews'),
-                        trailing: _liked
+                    Container(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          AutoSizeText(CCTBreakfast.cctBreakfastEngName[widget.index], maxLines: 3, textAlign: TextAlign.center,),
+                          Positioned(left: 0.0,child: AutoSizeText(CCTBreakfast.cctBreakfastCanName[widget.index], maxLines: 1, textAlign: TextAlign.start,)),
+                          Divider()
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                           _liked
                             ? IconButton(
+                              iconSize: 20,
                                 icon: Icon(Icons.favorite),
                                 color: Colors.red,
                                 onPressed: _likeAction,
                                 splashRadius: 20.0,
                               )
                             : IconButton(
+                              iconSize: 20,
                                 icon: Icon(Icons.favorite_border_outlined),
                                 onPressed: _likeAction,
                                 splashRadius: 20.0,
-                              )),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('Stars:   ${widget.rating}'),
+                              ),
                           ElevatedButton(
                             onPressed: () {
                               Navigator.pushNamed(context, '/foodtemplate2', arguments: ScreenArguments(name: FoodModel.title[widget.index], foodId: "generatefromthedatabase") );

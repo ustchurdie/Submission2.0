@@ -1,3 +1,4 @@
+import 'package:cust_hackerman/Models/foodbase.dart';
 import 'package:cust_hackerman/Widgets/FoodCardScrollBar/FoodCard.dart';
 import 'package:cust_hackerman/Widgets/HomePageWidgets/SearchBox.dart';
 import 'package:flutter/material.dart';
@@ -45,14 +46,8 @@ class _HomePageState extends State<HomePage>
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Flex(direction: Axis.horizontal, children: [
-                  FoodCard(review: 50, rating: "4.8", index: 2),
-                  FoodCard(review: 50, rating: "4.8", index: 3),
-                  FoodCard(review: 50, rating: "4.8", index: 3),
-                  FoodCard(review: 50, rating: "4.8", index: 3),
-                  FoodCard(review: 50, rating: "4.8", index: 3),
-                  FoodCard(review: 50, rating: "4.8", index: 3),
-                  FoodCard(review: 50, rating: "4.8", index: 3),
-                  FoodCard(review: 50, rating: "4.8", index: 3),
+                  for (int i= 0; i < CCTBreakfast.cctBreakfastImages.length; i++)
+                    FoodCard(index: i)
                 ]),
               ),
               Padding(
@@ -65,16 +60,8 @@ class _HomePageState extends State<HomePage>
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Flex(direction: Axis.horizontal, children: [
-                  FoodCard(review: 50, rating: "4.8", index: 0),
-                  FoodCard(review: 50, rating: "4.8", index: 1),
-                  FoodCard(review: 50, rating: "4.8", index: 2),
-                  FoodCard(review: 50, rating: "4.8", index: 1),
-                  FoodCard(review: 50, rating: "4.8", index: 2),
-                  FoodCard(review: 50, rating: "4.8", index: 0),
-                  FoodCard(review: 50, rating: "4.8", index: 3),
-                  FoodCard(review: 50, rating: "4.8", index: 3),
-                  FoodCard(review: 50, rating: "4.8", index: 3),
-                  FoodCard(review: 50, rating: "4.8", index: 3),
+                  for (int i= 0; i < CCTBreakfast.cctBreakfastImages.length; i++)
+                    FoodCard(index: i)
                 ]),
               ),
             ],

@@ -54,7 +54,7 @@ class ResultList extends StatelessWidget {
           crossAxisSpacing: 4.0
           ),
          itemBuilder: (BuildContext context, int index){
-            return FoodCard(review: random.nextInt(100), rating: "4.2", index: random.nextInt(FoodModel.title.length));
+            return FoodCard(index: random.nextInt(CCTBreakfast.cctBreakfastEngName.length));
          },
          itemCount: 15,
       ),

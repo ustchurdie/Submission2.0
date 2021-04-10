@@ -1,13 +1,8 @@
+import 'package:cust_hackerman/Models/foodbase.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
-final List<String> eggtartImages = [
-  '/eggtart/1.jpg',
-  '/eggtart/2.jpg',
-  '/eggtart/3.jpg',
-  '/eggtart/4.jpg'
-];
 
 class ContentPage extends StatelessWidget {
   @override
@@ -46,7 +41,6 @@ class ContentPage extends StatelessWidget {
             PropertyBox(title: 'Allergies', textbelow: 'Put some tagchips in here',),
             PropertyBox(title: 'See Also/ Categories', textbelow: 'What did other users also looked for \nUsually for (breakfast/snacks/lunch/dinner)?',),
             Divider(height: 30, thickness: 1.0,),
-            Container(color: Colors.grey, height: 100, child: Center(child: Text('Contact/ Copy Right?'),),)
           ],
         ),
       ),
@@ -64,20 +58,23 @@ class PropertyBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(10.0),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(4.0)
-      ),
-      width: MediaQuery.of(context).size.width,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          AutoSizeText(title, minFontSize: 24, maxLines: 1, maxFontSize: 40, style: TextStyle(fontWeight: FontWeight.bold),),
-          Divider(),
-          AutoSizeText(textbelow, maxLines: 3, maxFontSize: 30, minFontSize: 20,),
-        ],
+    return Padding(
+      padding: const EdgeInsets.only(left: 15.0, top:8.0),
+      child: Container(
+        padding: EdgeInsets.all(10.0),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(4.0)
+        ),
+        width: MediaQuery.of(context).size.width,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            AutoSizeText(title, minFontSize: 24, maxLines: 1, maxFontSize: 40, style: TextStyle(fontWeight: FontWeight.bold),),
+            Divider(),
+            AutoSizeText(textbelow, maxLines: 3, maxFontSize: 30, minFontSize: 20,),
+          ],
+        ),
       ),
     );
   }
@@ -94,34 +91,14 @@ class ImageView extends StatelessWidget {
       width: MediaQuery.of(context).size.width / 2,
       child: CarouselSlider(
           items: [
-            Container(
-              margin: EdgeInsets.all(4.0),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.0),
-                  image: DecorationImage(
-                      image: AssetImage(eggtartImages[0]), fit: BoxFit.cover)),
-            ),
-            Container(
-              margin: EdgeInsets.all(4.0),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.0),
-                  image: DecorationImage(
-                      image: AssetImage(eggtartImages[1]), fit: BoxFit.cover)),
-            ),
-            Container(
-              margin: EdgeInsets.all(4.0),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.0),
-                  image: DecorationImage(
-                      image: AssetImage(eggtartImages[2]), fit: BoxFit.cover)),
-            ),
-            Container(
-              margin: EdgeInsets.all(4.0),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.0),
-                  image: DecorationImage(
-                      image: AssetImage(eggtartImages[3]), fit: BoxFit.cover)),
-            ),
+            for (var i in CCTBreakfast.cctBreakfastImages)
+              Container(
+                margin: EdgeInsets.all(4.0),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                    image: DecorationImage(
+                        image: AssetImage(i), fit: BoxFit.cover)),
+              )
           ],
           options: CarouselOptions(
             height: MediaQuery.of(context).size.height / 2,
