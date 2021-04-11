@@ -28,8 +28,8 @@ class _HomePageState extends State<HomePage>
                   image: DecorationImage(
                       image: AssetImage('background.jpg'), fit: BoxFit.cover),
                 ),
-                child: Positioned(top: 150, child: SearchBox())),
-          ),
+                child: SearchBox())),
+          
           // SliverPadding(
           //   padding: EdgeInsets.all(8.0),
           //   sliver:

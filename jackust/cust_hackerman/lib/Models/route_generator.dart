@@ -1,11 +1,12 @@
 import 'package:cust_hackerman/Models/screen_arguments.dart';
+import 'package:cust_hackerman/Pages/cct_page.dart';
 import 'package:cust_hackerman/Pages/foodtemplate_1.dart';
 import 'package:cust_hackerman/Pages/foodtemplate_2.dart';
 import 'package:cust_hackerman/Pages/foodtemplate_3.dart';
-import 'package:cust_hackerman/Pages/home_page.dart';
 import 'package:cust_hackerman/Pages/search_result_page.dart';
 import 'package:cust_hackerman/Pages/shop_detail.dart';
 import 'package:cust_hackerman/Pages/shop_info.dart';
+import 'package:cust_hackerman/main.dart';
 import 'package:flutter/material.dart';
 
 
@@ -16,7 +17,7 @@ class RouteGenerator {
    
     switch (settings.name) {
       case '/home':
-        return MaterialPageRoute(builder: (_) => HomePage());
+        return MaterialPageRoute(builder: (_) => NewHomePage());
       case '/shopinfo':
         return MaterialPageRoute(builder: (_) => ShopInfo());
       case '/shopdetail':
@@ -29,6 +30,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => FoodTemplate3(foodName: arguments.name, foodId: arguments.foodId,)); 
       case '/searchresult':
         return MaterialPageRoute(builder: (_) => SearchResultPage(result: arguments.name));
+      case '/cct':
+        return MaterialPageRoute(builder: (_) => CCTPage());
       default:
         return _errorRoute();
     }

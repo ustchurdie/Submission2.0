@@ -9,7 +9,7 @@ class FoodTemplate1 extends StatelessWidget {
       width: double.infinity,
       height: double.infinity,
       child: Scaffold(
-        appBar: FoodTemplateAppBar(),
+        appBar: FoodTemplateAppBar(notHome: true,),
         body: SingleChildScrollView(
           physics: PageScrollPhysics(),
           child: Padding(
