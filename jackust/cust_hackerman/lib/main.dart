@@ -101,14 +101,14 @@ class HomeBody extends StatelessWidget {
           // ),
           // Divider(),
           Container(
-            color: Colors.blue[100],
+            color:Color.fromRGBO(200, 221, 220, 1),
             width: double.infinity,
             padding: const EdgeInsets.symmetric(horizontal:18.0, vertical: 5.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 makeItem(
-                  type: ['asd'],
+                  type: ['Snack'],
                   context: context,
                     height: MediaQuery.of(context).size.height*0.6,
                     width: MediaQuery.of(context).size.width*0.225,
@@ -117,30 +117,30 @@ class HomeBody extends StatelessWidget {
                     description:
                         "This is nothing but a fake description of the food the restautant is presenting."),
                         makeItem(
-                          type: ['asd'],
+                          type: ['Snack','Breakfast'],
                           context: context,
                     height: MediaQuery.of(context).size.height*0.6,
                     width: MediaQuery.of(context).size.width*0.225,
-                    title: "Hamburger",
-                    imgTitle: 'hamburger.jpg',
+                    title: "Ham and chopped egg salad sandwich",
+                    imgTitle: '/cctbreakfast/1.jpg',
                     description:
                         "This is nothing but a fake description of the food the restautant is presenting."),
                         makeItem(
-                          type: ['asd'],
+                          type: ['Snack','Tea'],
                           context: context,
                     height: MediaQuery.of(context).size.height*0.6,
                     width: MediaQuery.of(context).size.width*0.225,
-                    title: "Hamburger",
-                    imgTitle: 'hamburger.jpg',
+                    title: "Toasted bun served with condensed milk",
+                    imgTitle: '/cctbreakfast/2.jpg',
                     description:
                         "This is nothing but a fake description of the food the restautant is presenting."),
                         makeItem(
                           context: context,
                     height: MediaQuery.of(context).size.height*0.6,
                     width: MediaQuery.of(context).size.width*0.225,
-                    title: "Hamburger",
-                    imgTitle: 'hamburger.jpg',
-                    type: ['Cha Chaan Tan', 'Snack'],
+                    title: "Toasted bun served with cheese and tuna",
+                    imgTitle: '/cctbreakfast/3.jfif',
+                    type: ['Cha Chaan Tan', 'Breakfast'],
                     description:
                         "This is nothing but a fake description of the food the restautant is presenting."),
               ],
@@ -159,7 +159,7 @@ Widget makeItem({context,title, imgTitle, height, width, description,@required L
       height: height,
       width: width,
       decoration: BoxDecoration(
-          color: Color.fromRGBO(78, 141, 181, 1), borderRadius: BorderRadius.circular(10)),
+          color: Color.fromRGBO(113, 142, 145, 1), borderRadius: BorderRadius.circular(10)),
       child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
         //Container for the picture
         Container(
