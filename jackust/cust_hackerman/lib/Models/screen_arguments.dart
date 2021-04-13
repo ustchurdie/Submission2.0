@@ -4,6 +4,6 @@ class ScreenArguments{
   final double rating;
   final String foodId;
 
-  ScreenArguments({this.name, this.reviews, this.rating, this.foodId});
+  ScreenArguments({this.name, this.reviews,  this.rating,  this.foodId});
 
 }

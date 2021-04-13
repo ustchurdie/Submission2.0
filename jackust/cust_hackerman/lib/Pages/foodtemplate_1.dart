@@ -65,9 +65,6 @@ class FoodTemplate1 extends StatelessWidget {
 }
 
 class PropertyBox extends StatelessWidget {
-  const PropertyBox({
-    Key key,
-  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,23 +1,43 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_radar_chart/flutter_radar_chart.dart';
+import 'package:image_picker_web/image_picker_web.dart';
+import 'dart:html' as html;
 
 class FoodTemplate3 extends StatefulWidget {
-  final String foodName;
-  final String foodId;
-
-  const FoodTemplate3({Key key, @required this.foodName, this.foodId})
-      : super(key: key);
-
   @override
   _FoodTemplate3State createState() => _FoodTemplate3State();
 }
 
 class _FoodTemplate3State extends State<FoodTemplate3> {
-  bool _liked = false;
+  final _pickedImages = <Image>[];
+  String _imageInfo = '';
 
-  void _likeAction() {
+  Future<void> _pickImage() async {
+    Image fromPicker =
+        await ImagePickerWeb.getImage(outputType: ImageType.widget);
+    if (fromPicker != null) {
+      setState(() {
+        _pickedImages.clear();
+        _pickedImages.add(fromPicker);
+      });
+    }
+  }
+
+  Future<void> _getImgFile() async {
+    html.File infos = await ImagePickerWeb.getImage(outputType: ImageType.file);
     setState(() {
-      _liked = !_liked;
+      _imageInfo = 'Name: ${infos.name}\nRelative Path : ${infos.relativePath}';
+      print(_imageInfo);
+    });
+  }
+
+  Future<void> _getImgInfo() async {
+    final infos = await ImagePickerWeb.getImageInfo;
+    setState(() {
+      _pickedImages.clear();
+      _pickedImages
+          .add(Image.memory(infos.data, semanticLabel: infos.fileName));
+      _imageInfo = '${infos.toJson()}';
+      print(_imageInfo);
     });
   }
 
@@ -25,50 +45,46 @@ class _FoodTemplate3State extends State<FoodTemplate3> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('${widget.foodName}'),
-        centerTitle: true,
-        toolbarHeight: 80,
-        actions: [
-          _liked
-              ? IconButton(
-                  icon: Icon(Icons.favorite),
-                  color: Colors.red,
-                  onPressed: _likeAction,
-                  splashRadius: 20.0,
-                )
-              : IconButton(
-                  icon: Icon(Icons.favorite_border_outlined),
-                  onPressed: _likeAction,
-                  splashRadius: 20.0,
+        title: const Text('Search by Image'),
+      ),
+      body: Center(
+          child: SingleChildScrollView(
+                      child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 300),
+                    switchInCurve: Curves.easeIn,
+                    child: Center(
+                      child: SizedBox(
+                        width: MediaQuery.of(context).size.width*2/3,
+                        height: MediaQuery.of(context).size.height*2/3,
+                        child: ListView.builder(
+                            scrollDirection: Axis.vertical,
+                            itemCount:
+                                _pickedImages == null ? 0 : _pickedImages.length,
+                            itemBuilder: (context, index) => _pickedImages[index]),
+                      ),
+                    ),
+                  ),
+              ButtonBar(alignment: MainAxisAlignment.center, children: <Widget>[
+                ElevatedButton(
+                  onPressed: _pickImage,
+                  child: const Text('Select Image'),
                 ),
-                SizedBox(width: 40),
-        ],
-      ),
-      body: SingleChildScrollView(
-              child: Container(
-                child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          mainAxisSize: MainAxisSize.max,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            
-         Container(
-           height: 350,
-                    child: RadarChart(
-                  sides: 6,
-                  ticks: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-                  features: ["sour", "sweet", "salty", "oily", "bit", "spicy"],
-                  data: [[2, 3, 5, 6, 8, 1],
-                  [2, 6, 8, 7, 9, 3],
-                  [6, 3, 4, 7, 2, 1],
-                  [2, 1, 1, 1,2, 3]],
-              ),
-         ),
-            
-          ],
-        ),
-              ),
-      ),
+                ElevatedButton(
+                  onPressed: _getImgFile,
+                  child: const Text('Get Image File'),
+                ),
+                ElevatedButton(
+                  onPressed: _getImgInfo,
+                  child: const Text('Get Image Info'),
+                ),
+              ]),
+            ]),
+          )),
     );
   }
 }

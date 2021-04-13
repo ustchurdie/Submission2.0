@@ -1,6 +1,5 @@
 import 'package:cust_hackerman/Models/foodbase.dart';
 import 'package:cust_hackerman/Widgets/FoodCardScrollBar/FoodCard.dart';
-import 'package:cust_hackerman/Widgets/HomePageWidgets/SearchBox.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -28,7 +27,7 @@ class _HomePageState extends State<HomePage>
                   image: DecorationImage(
                       image: AssetImage('background.jpg'), fit: BoxFit.cover),
                 ),
-                child: SearchBox())),
+                child: Text('SearchBox'))),
           
           // SliverPadding(
           //   padding: EdgeInsets.all(8.0),
@@ -47,7 +46,7 @@ class _HomePageState extends State<HomePage>
                 scrollDirection: Axis.horizontal,
                 child: Flex(direction: Axis.horizontal, children: [
                   for (int i= 0; i < CCTBreakfast.cctBreakfastImages.length; i++)
-                    FoodCard(index: i)
+                    FoodCard(index: i, name: ' ',)
                 ]),
               ),
               Padding(
@@ -61,7 +60,7 @@ class _HomePageState extends State<HomePage>
                 scrollDirection: Axis.horizontal,
                 child: Flex(direction: Axis.horizontal, children: [
                   for (int i= 0; i < CCTBreakfast.cctBreakfastImages.length; i++)
-                    FoodCard(index: i)
+                    FoodCard(index: i, name: ' ')
                 ]),
               ),
             ],

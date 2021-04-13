@@ -28,7 +28,7 @@ class FoodBar extends StatelessWidget {
                       delegate: SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
                           return FoodCard(
-                            index: random.nextInt(7),
+                            index: random.nextInt(7), name: 'What',
                           );
                         },
                         childCount: 20,
