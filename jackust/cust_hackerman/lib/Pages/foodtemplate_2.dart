@@ -103,9 +103,8 @@ class VerticalTabBar extends StatelessWidget {
         child: Column(
           children: [
             DrawerHeader(child: Text("This is a header")),
-            TabBarItem(),
-            TabBarItem(),
-            
+            TabBarItem(header: 'Breakfast', subcat: 'Bakery',),
+            TabBarItem(header: 'Tea', subcat: 'Diary',),
           ],
         ),
       ),
@@ -114,6 +113,11 @@ class VerticalTabBar extends StatelessWidget {
 }
 
 class TabBarItem extends StatelessWidget {
+
+  final String header;
+  final String subcat;
+
+  const TabBarItem({Key key,@required this.header,@required this.subcat}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -134,8 +138,8 @@ class TabBarItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Expanded(flex:1, child: CircleAvatar(backgroundColor: Colors.white,)),
-                Expanded(flex: 5, child: Center(child: Text("Restaurant type"))),
-                Expanded(flex: 5, child: Center(child: Text("(Breakfast/Main COurse/Tea/Snack?)"))),
+                Expanded(flex: 5, child: Center(child: Text(header))),
+                Expanded(flex: 5, child: Center(child: Text(subcat))),
               ],
             )),
       ),

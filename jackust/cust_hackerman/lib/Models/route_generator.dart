@@ -2,7 +2,7 @@ import 'package:cust_hackerman/Models/screen_arguments.dart';
 import 'package:cust_hackerman/Pages/restaurant_page.dart';
 import 'package:cust_hackerman/Pages/foodtemplate_1.dart';
 import 'package:cust_hackerman/Pages/foodtemplate_2.dart';
-import 'package:cust_hackerman/Pages/foodtemplate_3.dart';
+import 'package:cust_hackerman/Pages/image_search.dart';
 import 'package:cust_hackerman/Pages/search_result_page.dart';
 import 'package:cust_hackerman/main.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +23,7 @@ class RouteGenerator {
       case '/foodtemplate3':
         return MaterialPageRoute(builder: (_) => FoodTemplate3()); 
       case '/searchresult':
-        return MaterialPageRoute(builder: (_) => SearchResultPage(result: arguments.name));
+        return MaterialPageRoute(builder: (_) => SearchResultPage(result: arguments.name, resultword: arguments.foodId,));
       case '/restaurant':
         return MaterialPageRoute(builder: (_) => RestaurantPage(title: arguments.name));
       default:

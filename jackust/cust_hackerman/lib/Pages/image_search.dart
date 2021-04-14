@@ -45,30 +45,40 @@ class _FoodTemplate3State extends State<FoodTemplate3> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Search by Image'),
+        centerTitle: true,
+        title: const Text('Search by Image',style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),),
+        backgroundColor: Color.fromRGBO(203, 241, 245, 1),
+        leading: IconButton(
+          iconSize: kToolbarHeight * 0.5,
+          color: Colors.black,
+          icon: Icon(Icons.arrow_left_sharp),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
       ),
       body: Center(
           child: SingleChildScrollView(
-                      child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  AnimatedSwitcher(
-                    duration: const Duration(milliseconds: 300),
-                    switchInCurve: Curves.easeIn,
-                    child: Center(
-                      child: SizedBox(
-                        width: MediaQuery.of(context).size.width*2/3,
-                        height: MediaQuery.of(context).size.height*2/3,
-                        child: ListView.builder(
-                            scrollDirection: Axis.vertical,
-                            itemCount:
-                                _pickedImages == null ? 0 : _pickedImages.length,
-                            itemBuilder: (context, index) => _pickedImages[index]),
-                      ),
-                    ),
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              AnimatedSwitcher(
+                duration: const Duration(milliseconds: 300),
+                switchInCurve: Curves.easeIn,
+                child: Center(
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width * 2 / 3,
+                    height: MediaQuery.of(context).size.height * 2 / 3,
+                    child: ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        itemCount:
+                            _pickedImages == null ? 0 : _pickedImages.length,
+                        itemBuilder: (context, index) => _pickedImages[index]),
                   ),
+                ),
+              ),
               ButtonBar(alignment: MainAxisAlignment.center, children: <Widget>[
                 ElevatedButton(
                   onPressed: _pickImage,
@@ -84,7 +94,7 @@ class _FoodTemplate3State extends State<FoodTemplate3> {
                 ),
               ]),
             ]),
-          )),
+      )),
     );
   }
 }

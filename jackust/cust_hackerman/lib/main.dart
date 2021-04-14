@@ -26,16 +26,26 @@ class NewHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: FoodTemplateAppBar(
-      //   notHome: false,
-      // ),
       body: HomeBody(),
     );
   }
 }
 
-class HomeBody extends StatelessWidget {
+class HomeBody extends StatefulWidget {
+  @override
+  _HomeBodyState createState() => _HomeBodyState();
+}
+
+class _HomeBodyState extends State<HomeBody> {
   final Random random = new Random();
+
+  final TextEditingController _controller = TextEditingController();
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,16 +75,28 @@ class HomeBody extends StatelessWidget {
                       color: Colors.white),
                   child: Center(
                     child: TextField(
-                      decoration: InputDecoration(
-                          border: InputBorder.none,
-                          prefixIcon: Icon(
-                            Icons.search,
-                            color: Colors.grey,
-                          ),
-                          hintText: "What kind of food do you want to search?",
-                          hintStyle:
-                              TextStyle(color: Colors.grey, fontSize: 20)),
-                    ),
+                        controller: _controller,
+                        decoration: InputDecoration(
+                            border: InputBorder.none,
+                            prefixIcon: Icon(
+                              Icons.search,
+                              color: Colors.grey,
+                            ),
+                            hintText:
+                                "What kind of food do you want to search?",
+                            hintStyle:
+                                TextStyle(color: Colors.grey, fontSize: 20)),
+                        onSubmitted: (String value) {
+                          Navigator.pushNamed(context, '/searchresult',
+                              arguments: ScreenArguments(
+                                  foodId: _controller.text,
+                                  name: (value.contains(RegExp(
+                                          '[\u4E00-\u9FEF]',
+                                          unicode: true)))
+                                      ? '中文'
+                                      : 'English'));
+                          _controller.clear();
+                        }),
                   ),
                 ),
                 SizedBox(
@@ -220,6 +242,7 @@ Widget makeItem(
           crossAxisAlignment: WrapCrossAlignment.start,
           children: type
               .map((e) => ActionChip(
+                  backgroundColor: Colors.blue[100],
                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   label: Text(e),
                   onPressed: () {
