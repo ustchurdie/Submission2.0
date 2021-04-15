@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker_web/image_picker_web.dart';
 import 'dart:html' as html;
+import 'package:mime/mime.dart';
 
 class FoodTemplate3 extends StatefulWidget {
   @override
@@ -14,10 +15,15 @@ class _FoodTemplate3State extends State<FoodTemplate3> {
   Future<void> _pickImage() async {
     Image fromPicker =
         await ImagePickerWeb.getImage(outputType: ImageType.widget);
+    html.File infos = await ImagePickerWeb.getImage(outputType: ImageType.file);
     if (fromPicker != null) {
       setState(() {
         _pickedImages.clear();
         _pickedImages.add(fromPicker);
+        _imageInfo =
+            'Name: ${infos.name}\nRelative Path : ${infos.relativePath}';
+        print(_imageInfo);
+        print(lookupMimeType(infos.relativePath));
       });
     }
   }
@@ -38,7 +44,10 @@ class _FoodTemplate3State extends State<FoodTemplate3> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('Search by Image',style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),),
+        title: const Text(
+          'Search by Image',
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        ),
         backgroundColor: Color.fromRGBO(203, 241, 245, 1),
         leading: IconButton(
           iconSize: kToolbarHeight * 0.5,

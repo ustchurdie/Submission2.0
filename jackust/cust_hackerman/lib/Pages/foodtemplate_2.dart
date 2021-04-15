@@ -6,11 +6,11 @@ import 'package:cust_hackerman/Models/foodbase.dart';
 import 'package:flutter/material.dart';
 
 class FoodTemplate2 extends StatelessWidget {
-
   final String title;
   final String imgPath;
 
-  const FoodTemplate2({Key key,@required this.title, this.imgPath}) : super(key: key);
+  const FoodTemplate2({Key key, @required this.title, this.imgPath})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,12 +26,11 @@ class FoodTemplate2 extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
-              flex: 2,
-              child: SingleChildScrollView(
-                  physics: NeverScrollableScrollPhysics(),
-                  child: VerticalTabBar()),
-            ),
-            Expanded(flex: 8, child: ContentPage(title: title, imgPath: imgPath,)),
+                flex: 8,
+                child: ContentPage(
+                  title: title,
+                  imgPath: imgPath,
+                )),
           ],
         ),
       ),
@@ -105,9 +104,28 @@ class VerticalTabBar extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            DrawerHeader(child: Text("This is a header")),
-            TabBarItem(header: 'Breakfast', subcat: 'Bakery',),
-            TabBarItem(header: 'Tea', subcat: 'Diary',),
+            Container(
+                  height: 100,
+                  width: double.infinity,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage('/drawer_background.jpeg'),
+                            fit: BoxFit.cover))),
+            TabBarItem(
+              header: 'Breakfast',
+            ),
+            TabBarItem(
+              header: 'Tea',
+            ),
+            TabBarItem(
+              header: 'Main Course',
+            ),
+            TabBarItem(
+              header: 'Ingredients',
+            ),
+            TabBarItem(
+              header: 'Cha Chaan Teng',
+            ),
           ],
         ),
       ),
@@ -116,11 +134,10 @@ class VerticalTabBar extends StatelessWidget {
 }
 
 class TabBarItem extends StatelessWidget {
-
   final String header;
-  final String subcat;
 
-  const TabBarItem({Key key,@required this.header,@required this.subcat}) : super(key: key);
+  const TabBarItem({Key key, @required this.header})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -128,8 +145,8 @@ class TabBarItem extends StatelessWidget {
       padding: EdgeInsets.all(8.0),
       child: InkWell(
         autofocus: true,
-        onTap: (){},
-              child: Container(
+        onTap: () {},
+        child: Container(
             height: 60,
             width: double.infinity,
             decoration: BoxDecoration(
@@ -138,11 +155,10 @@ class TabBarItem extends StatelessWidget {
             ),
             padding: EdgeInsets.symmetric(horizontal: 10),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Expanded(flex:1, child: CircleAvatar(backgroundColor: Colors.white,)),
-                Expanded(flex: 5, child: Center(child: Text(header))),
-                Expanded(flex: 5, child: Center(child: Text(subcat))),
+                Icon(Icons.menu),
+                Text('$header')
               ],
             )),
       ),
@@ -151,11 +167,11 @@ class TabBarItem extends StatelessWidget {
 }
 
 class ContentPage extends StatelessWidget {
-
   final String title;
   final String imgPath;
 
-  const ContentPage({Key key,@required this.title, this.imgPath}) : super(key: key);
+  const ContentPage({Key key, @required this.title, this.imgPath})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -175,19 +191,19 @@ class ContentPage extends StatelessWidget {
                   child: AutoSizeText(
                     title,
                     maxLines: 1,
-                    style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
+                    style:
+                        TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
             ),
-             Container(
-                height: MediaQuery.of(context).size.height*0.5,
-                width:MediaQuery.of(context).size.width*0.3 ,
-                decoration: BoxDecoration(
+            Container(
+              height: MediaQuery.of(context).size.height * 0.5,
+              width: MediaQuery.of(context).size.width * 0.3,
+              decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5.0),
-                  image: DecorationImage(image: AssetImage(imgPath),
-                  fit: BoxFit.fill)
-                ),
+                  image: DecorationImage(
+                      image: AssetImage(imgPath), fit: BoxFit.fill)),
             ),
             Padding(
               padding: const EdgeInsets.all(4.0),
@@ -196,12 +212,32 @@ class ContentPage extends StatelessWidget {
                 color: Colors.black,
               ),
             ),
-            PropertyBox(title: 'Description', textbelow: 'This is the section for the description of the food. Briefly describe the taste, maybe history? of the food. Add anything you want.',),
-            PropertyBox(title: 'Allergies', textbelow: 'Put some tagchips in here',),
-            PropertyBox(title: 'Properties', textbelow: 'Calories, Saturated/Trans-fat, sugar, sodium',),
-            PropertyBox(title: 'Options', textbelow: 'Puffy Pastry Eggtart / Shortcrust Pastry Eggtart',),
-            PropertyBox(title: 'See Also/ Categories', textbelow: 'What did other users also looked for \nUsually for (breakfast/snacks/lunch/dinner)?',),
-            Divider(height: 30, thickness: 1.0,),
+            PropertyBox(
+              title: 'Description',
+              textbelow:
+                  'This is the section for the description of the food. Briefly describe the taste, maybe history? of the food. Add anything you want.',
+            ),
+            PropertyBox(
+              title: 'Allergies',
+              textbelow: 'Put some tagchips in here',
+            ),
+            PropertyBox(
+              title: 'Properties',
+              textbelow: 'Calories, Saturated/Trans-fat, sugar, sodium',
+            ),
+            PropertyBox(
+              title: 'Options',
+              textbelow: 'Puffy Pastry Eggtart / Shortcrust Pastry Eggtart',
+            ),
+            PropertyBox(
+              title: 'See Also/ Categories',
+              textbelow:
+                  'What did other users also looked for \nUsually for (breakfast/snacks/lunch/dinner)?',
+            ),
+            Divider(
+              height: 30,
+              thickness: 1.0,
+            ),
           ],
         ),
       ),
@@ -210,30 +246,39 @@ class ContentPage extends StatelessWidget {
 }
 
 class PropertyBox extends StatelessWidget {
-
   final String title;
   final String textbelow;
   const PropertyBox({
- @required this.title,@required this.textbelow,
+    @required this.title,
+    @required this.textbelow,
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 15.0, top:8.0),
+      padding: const EdgeInsets.only(left: 15.0, top: 8.0),
       child: Container(
         padding: EdgeInsets.all(10.0),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(4.0)
-        ),
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(4.0)),
         width: MediaQuery.of(context).size.width,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            AutoSizeText(title, minFontSize: 24, maxLines: 1, maxFontSize: 40, style: TextStyle(fontWeight: FontWeight.bold),),
+            AutoSizeText(
+              title,
+              minFontSize: 24,
+              maxLines: 1,
+              maxFontSize: 40,
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
             Divider(),
-            AutoSizeText(textbelow, maxLines: 3, maxFontSize: 30, minFontSize: 20,),
+            AutoSizeText(
+              textbelow,
+              maxLines: 3,
+              maxFontSize: 30,
+              minFontSize: 20,
+            ),
           ],
         ),
       ),
@@ -242,10 +287,9 @@ class PropertyBox extends StatelessWidget {
 }
 
 class ImageView extends StatelessWidget {
-
   final List<String> type;
 
-  const ImageView({Key key,@required this.type}) : super(key: key);
+  const ImageView({Key key, @required this.type}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -268,7 +312,7 @@ class ImageView extends StatelessWidget {
             aspectRatio: 16 / 9,
             autoPlayCurve: Curves.fastOutSlowIn,
             enableInfiniteScroll: true,
-            autoPlayAnimationDuration: Duration(milliseconds: 500),
+            autoPlayAnimationDuration: Duration(milliseconds: 300),
             viewportFraction: 0.8,
           )),
     );

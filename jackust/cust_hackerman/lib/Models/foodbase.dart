@@ -74,7 +74,7 @@ class CCTTea{
     'Toasted bun served with butter',
     'Cutlet pork chop',
     'Hong Kong style French toast served with chocolate and red beans',
-    'Hong Kong Style French Toast served with  ham and cheese',
+    'Hong Kong Style French Toast served with   ham and cheese',
     'French fries',
     'Deep fried chicken wings',
     'Deep fried chicken thighs',
