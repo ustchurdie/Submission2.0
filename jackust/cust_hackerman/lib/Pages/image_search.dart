@@ -1,6 +1,8 @@
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:image_picker_web/image_picker_web.dart';
-import 'dart:html' as html;
+import 'dart:convert';
+import '../OCR/OCR.dart';
 import 'package:mime/mime.dart';
 
 class FoodTemplate3 extends StatefulWidget {
@@ -13,19 +15,27 @@ class _FoodTemplate3State extends State<FoodTemplate3> {
   String _imageInfo = '';
 
   Future<void> _pickImage() async {
-    Image fromPicker =
-        await ImagePickerWeb.getImage(outputType: ImageType.widget);
-    html.File infos = await ImagePickerWeb.getImage(outputType: ImageType.file);
+    Uint8List infos =
+    await ImagePickerWeb.getImage(outputType: ImageType.bytes);
+    Image fromPicker=new Image.memory(infos);
     if (fromPicker != null) {
       setState(() {
         _pickedImages.clear();
         _pickedImages.add(fromPicker);
-        _imageInfo =
-            'Name: ${infos.name}\nRelative Path : ${infos.relativePath}';
-        print(_imageInfo);
-        print(lookupMimeType(infos.relativePath));
+
+        String b64="data:image/jpeg;base64,"+base64.encode(infos);
+        print(b64);
+        Post newPost=new Post(base64Image:b64);
+        var p = createPost(
+            body: newPost.toMap());
       });
     }
+  }
+
+  Future<void> _getImgFile() async {
+
+    setState(() {
+    });
   }
 
   Future<void> _getImgInfo() async {
@@ -44,10 +54,7 @@ class _FoodTemplate3State extends State<FoodTemplate3> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text(
-          'Search by Image',
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-        ),
+        title: const Text('Search by Image',style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),),
         backgroundColor: Color.fromRGBO(203, 241, 245, 1),
         leading: IconButton(
           iconSize: kToolbarHeight * 0.5,
@@ -60,38 +67,42 @@ class _FoodTemplate3State extends State<FoodTemplate3> {
       ),
       body: Center(
           child: SingleChildScrollView(
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              AnimatedSwitcher(
-                duration: const Duration(milliseconds: 300),
-                switchInCurve: Curves.easeIn,
-                child: Center(
-                  child: SizedBox(
-                    width: MediaQuery.of(context).size.width * 2 / 3,
-                    height: MediaQuery.of(context).size.height * 2 / 3,
-                    child: ListView.builder(
-                        scrollDirection: Axis.vertical,
-                        itemCount:
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 300),
+                    switchInCurve: Curves.easeIn,
+                    child: Center(
+                      child: SizedBox(
+                        width: MediaQuery.of(context).size.width * 2 / 3,
+                        height: MediaQuery.of(context).size.height * 2 / 3,
+                        child: ListView.builder(
+                            scrollDirection: Axis.vertical,
+                            itemCount:
                             _pickedImages == null ? 0 : _pickedImages.length,
-                        itemBuilder: (context, index) => _pickedImages[index]),
+                            itemBuilder: (context, index) => _pickedImages[index]),
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              ButtonBar(alignment: MainAxisAlignment.center, children: <Widget>[
-                ElevatedButton(
-                  onPressed: _pickImage,
-                  child: const Text('Select Image'),
-                ),
-                ElevatedButton(
-                  onPressed: _getImgInfo,
-                  child: const Text('Get Image Info'),
-                ),
-              ]),
-            ]),
-      )),
+                  ButtonBar(alignment: MainAxisAlignment.center, children: <Widget>[
+                    ElevatedButton(
+                      onPressed: _pickImage,
+                      child: const Text('Select Image'),
+                    ),
+                    ElevatedButton(
+                      onPressed: _getImgFile,
+                      child: const Text('Get Image File'),
+                    ),
+                    ElevatedButton(
+                      onPressed: _getImgInfo,
+                      child: const Text('Get Image Info'),
+                    ),
+                  ]),
+                ]),
+          )),
     );
   }
 }
