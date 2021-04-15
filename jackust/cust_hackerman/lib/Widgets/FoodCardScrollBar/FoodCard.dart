@@ -7,7 +7,7 @@ class FoodCard extends StatefulWidget {
   final String name;
   final int index;
 
-  const FoodCard({Key key, @required this.index, this.name}) : super(key: key);
+  const FoodCard({@required this.index,this.name});
 
   @override
   _FoodCardState createState() => _FoodCardState();
@@ -97,7 +97,8 @@ class _FoodCardState extends State<FoodCard> {
                           Navigator.pushNamed(context, '/foodtemplate2',
                               arguments: ScreenArguments(
                                   name: FoodModel.title[widget.index],
-                                  foodId: "generatefromthedatabase"));
+                                  foodId: "generatefromthedatabase",),
+                                  );
                         },
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -24,7 +24,7 @@ Future<void> pass_info(String sql_command, String info) async {
       //print(await http.read('https://example.com/foobar.txt'));
     }
   }
-void main() {
-  print('Hello_world HaHa!');
-  pass_info('1', 'gender');
-}
+// void main() {
+//   print('Hello_world HaHa!');
+//   pass_info('1', 'gender');
+// }

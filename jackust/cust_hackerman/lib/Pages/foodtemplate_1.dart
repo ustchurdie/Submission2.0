@@ -47,7 +47,7 @@ class FoodTemplate1 extends StatelessWidget {
                   runSpacing: 15,
                   children: [
                     Chip(label: Text("Milk")),
-                    Chip(label: Text("Cha Chaan Tan")),
+                    Chip(label: Text("Cha Chaan Teng")),
                     Chip(label: Text("Egg")),
                     Chip(label: Text("Vegan?")),
                     Chip(label: Text("Breakfast")),
@@ -65,9 +65,6 @@ class FoodTemplate1 extends StatelessWidget {
 }
 
 class PropertyBox extends StatelessWidget {
-  const PropertyBox({
-    Key key,
-  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
