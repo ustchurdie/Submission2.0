@@ -1,4 +1,5 @@
 import 'package:cust_hackerman/Models/screen_arguments.dart';
+import 'package:cust_hackerman/Pages/food_list_page.dart';
 import 'package:cust_hackerman/Pages/restaurant_page.dart';
 import 'package:cust_hackerman/Pages/foodtemplate_1.dart';
 import 'package:cust_hackerman/Pages/foodtemplate_2.dart';
@@ -19,13 +20,15 @@ class RouteGenerator {
       case '/foodtemplate1':
         return MaterialPageRoute(builder: (_) => FoodTemplate1());
       case '/foodtemplate2':
-        return MaterialPageRoute(builder: (_) => FoodTemplate2(title: arguments.name,));
+        return MaterialPageRoute(builder: (_) => FoodTemplate2(title: arguments.name, imgPath: arguments.foodId,));
       case '/foodtemplate3':
         return MaterialPageRoute(builder: (_) => FoodTemplate3()); 
       case '/searchresult':
         return MaterialPageRoute(builder: (_) => SearchResultPage(result: arguments.name, resultword: arguments.foodId,));
       case '/restaurant':
-        return MaterialPageRoute(builder: (_) => RestaurantPage(title: arguments.name));
+        return MaterialPageRoute(builder: (_) => RestaurantPage(/*title: arguments.name*/));
+      case '/foodlist':
+        return MaterialPageRoute(builder: (_) => FoodList(type: arguments.name));
       default:
         return _errorRoute();
     }

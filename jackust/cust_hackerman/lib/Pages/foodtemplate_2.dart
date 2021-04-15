@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cust_hackerman/Models/foodbase.dart';
@@ -6,8 +8,9 @@ import 'package:flutter/material.dart';
 class FoodTemplate2 extends StatelessWidget {
 
   final String title;
+  final String imgPath;
 
-  const FoodTemplate2({Key key,@required this.title}) : super(key: key);
+  const FoodTemplate2({Key key,@required this.title, this.imgPath}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,7 +31,7 @@ class FoodTemplate2 extends StatelessWidget {
                   physics: NeverScrollableScrollPhysics(),
                   child: VerticalTabBar()),
             ),
-            Expanded(flex: 8, child: ContentPage(title: title,)),
+            Expanded(flex: 8, child: ContentPage(title: title, imgPath: imgPath,)),
           ],
         ),
       ),
@@ -150,8 +153,9 @@ class TabBarItem extends StatelessWidget {
 class ContentPage extends StatelessWidget {
 
   final String title;
+  final String imgPath;
 
-  const ContentPage({Key key,@required this.title}) : super(key: key);
+  const ContentPage({Key key,@required this.title, this.imgPath}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -167,21 +171,22 @@ class ContentPage extends StatelessWidget {
             Center(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: AutoSizeText(
-                  title + "  \n(" +CCTBreakfast.cctBreakfastCanName[CCTBreakfast.cctBreakfastEngName.indexOf(title)]+")",
-                  maxLines: 2,
-                  style: TextStyle(fontSize: 40.0, fontWeight: FontWeight.bold),
+                child: Center(
+                  child: AutoSizeText(
+                    title,
+                    maxLines: 1,
+                    style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
+                  ),
                 ),
               ),
             ),
-            // ImageView(),
              Container(
-                height: MediaQuery.of(context).size.height*0.45,
+                height: MediaQuery.of(context).size.height*0.5,
                 width:MediaQuery.of(context).size.width*0.3 ,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5.0),
-                  image: DecorationImage(image: AssetImage(CCTBreakfast.cctBreakfastImages[CCTBreakfast.cctBreakfastEngName.indexOf(title)]),
-                  fit: BoxFit.cover)
+                  image: DecorationImage(image: AssetImage(imgPath),
+                  fit: BoxFit.fill)
                 ),
             ),
             Padding(
@@ -238,13 +243,17 @@ class PropertyBox extends StatelessWidget {
 
 class ImageView extends StatelessWidget {
 
+  final List<String> type;
+
+  const ImageView({Key key,@required this.type}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width / 2,
+      width: MediaQuery.of(context).size.width / 1.3,
       child: CarouselSlider(
           items: [
-            for (var i in CCTBreakfast.cctBreakfastImages)
+            for (var i in type)
               Container(
                 margin: EdgeInsets.all(4.0),
                 decoration: BoxDecoration(
@@ -259,7 +268,7 @@ class ImageView extends StatelessWidget {
             aspectRatio: 16 / 9,
             autoPlayCurve: Curves.fastOutSlowIn,
             enableInfiniteScroll: true,
-            autoPlayAnimationDuration: Duration(milliseconds: 400),
+            autoPlayAnimationDuration: Duration(milliseconds: 500),
             viewportFraction: 0.8,
           )),
     );

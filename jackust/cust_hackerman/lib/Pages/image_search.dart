@@ -22,14 +22,6 @@ class _FoodTemplate3State extends State<FoodTemplate3> {
     }
   }
 
-  Future<void> _getImgFile() async {
-    html.File infos = await ImagePickerWeb.getImage(outputType: ImageType.file);
-    setState(() {
-      _imageInfo = 'Name: ${infos.name}\nRelative Path : ${infos.relativePath}';
-      print(_imageInfo);
-    });
-  }
-
   Future<void> _getImgInfo() async {
     final infos = await ImagePickerWeb.getImageInfo;
     setState(() {
@@ -83,10 +75,6 @@ class _FoodTemplate3State extends State<FoodTemplate3> {
                 ElevatedButton(
                   onPressed: _pickImage,
                   child: const Text('Select Image'),
-                ),
-                ElevatedButton(
-                  onPressed: _getImgFile,
-                  child: const Text('Get Image File'),
                 ),
                 ElevatedButton(
                   onPressed: _getImgInfo,

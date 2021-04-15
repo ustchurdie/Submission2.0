@@ -16,7 +16,7 @@ class MyWeb extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData.light(),
       debugShowCheckedModeBanner: false,
-      initialRoute: '/home',
+      initialRoute: '/restaurant',
       onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
@@ -147,39 +147,39 @@ class _HomeBodyState extends State<HomeBody> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 makeItem(
-                    type: ['Snack'],
+                    type: ['Breakfast','Cha Chaan Teng'],
                     context: context,
-                    height: MediaQuery.of(context).size.height * 0.6,
+                    height: MediaQuery.of(context).size.height * 0.75,
                     width: MediaQuery.of(context).size.width * 0.225,
                     title: CCTBreakfast.cctBreakfastEngName[7],
                     imgTitle: CCTBreakfast.cctBreakfastImages[7],
                     description:
                         "This is nothing but a fake description of the food the restautant is presenting."),
                 makeItem(
-                    type: ['Snack', 'Breakfast'],
+                    type: ['Main Course','Cha Chaan Teng'],
                     context: context,
-                    height: MediaQuery.of(context).size.height * 0.6,
+                    height: MediaQuery.of(context).size.height * 0.75,
                     width: MediaQuery.of(context).size.width * 0.225,
-                    title: CCTBreakfast.cctBreakfastEngName[5],
-                    imgTitle: CCTBreakfast.cctBreakfastImages[5],
+                    title: CCTMainCourse.cctmainEngName[7],
+                    imgTitle: CCTMainCourse.cctmainImages[7],
                     description:
                         "This is nothing but a fake description of the food the restautant is presenting."),
                 makeItem(
-                    type: ['Snack', 'Tea'],
+                    type: ['Snack', 'Tea','Cha Chaan Teng'],
                     context: context,
-                    height: MediaQuery.of(context).size.height * 0.6,
+                    height: MediaQuery.of(context).size.height * 0.75,
                     width: MediaQuery.of(context).size.width * 0.225,
-                    title: CCTBreakfast.cctBreakfastEngName[2],
-                    imgTitle: CCTBreakfast.cctBreakfastImages[2],
+                    title: CCTTea.cctteaEngName[7],
+                    imgTitle: CCTTea.cctteaImages[7],
                     description:
                         "This is nothing but a fake description of the food the restautant is presenting."),
                 makeItem(
                     context: context,
-                    height: MediaQuery.of(context).size.height * 0.6,
+                    height: MediaQuery.of(context).size.height * 0.75,
                     width: MediaQuery.of(context).size.width * 0.225,
                     title: CCTBreakfast.cctBreakfastEngName[3],
                     imgTitle: CCTBreakfast.cctBreakfastImages[3],
-                    type: ['Cha Chaan Tan', 'Breakfast'],
+                    type: ['Cha Chaan Teng', 'Breakfast'],
                     description:
                         "This is nothing but a fake description of the food the restautant is presenting."),
               ],
@@ -209,13 +209,13 @@ Widget makeItem(
     child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
       //Container for the picture
       Container(
-        height: height * 0.45,
+        height: width * 0.85,
         width: width * 0.95,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
             image: DecorationImage(
               image: AssetImage(imgTitle),
-              fit: BoxFit.cover,
+              fit: BoxFit.fill,
             )),
         child: Container(
           decoration: BoxDecoration(
@@ -265,7 +265,8 @@ Widget makeItem(
       ElevatedButton.icon(
           onPressed: () {
             Navigator.pushNamed(context, '/foodtemplate2',
-                arguments: ScreenArguments(name: title));
+                arguments: ScreenArguments(name: title, foodId: imgTitle
+                ));
           },
           icon: Icon(Icons.arrow_downward),
           label: Text('More'))
