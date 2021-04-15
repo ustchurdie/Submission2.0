@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cust_hackerman/Models/foodbase.dart';
+import 'package:cust_hackerman/Models/screen_arguments.dart';
 import 'package:flutter/material.dart';
 
 class FoodTemplate2 extends StatelessWidget {
@@ -105,12 +106,12 @@ class VerticalTabBar extends StatelessWidget {
         child: Column(
           children: [
             Container(
-                  height: 100,
-                  width: double.infinity,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage('/drawer_background.jpeg'),
-                            fit: BoxFit.cover))),
+                height: 100,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('/drawer_background.jpeg'),
+                        fit: BoxFit.cover))),
             TabBarItem(
               header: 'Breakfast',
             ),
@@ -136,8 +137,7 @@ class VerticalTabBar extends StatelessWidget {
 class TabBarItem extends StatelessWidget {
   final String header;
 
-  const TabBarItem({Key key, @required this.header})
-      : super(key: key);
+  const TabBarItem({Key key, @required this.header}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -156,10 +156,7 @@ class TabBarItem extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Icon(Icons.menu),
-                Text('$header')
-              ],
+              children: [Icon(Icons.menu), Text('$header')],
             )),
       ),
     );
@@ -214,25 +211,120 @@ class ContentPage extends StatelessWidget {
             ),
             PropertyBox(
               title: 'Description',
-              textbelow:
-                  'This is the section for the description of the food. Briefly describe the taste, maybe history? of the food. Add anything you want.',
+              textbelow: AutoSizeText(
+                'This is the section for the description of the food. Briefly describe the taste, maybe history? of the food. Add anything you want.',
+                maxLines: 3,
+                maxFontSize: 30,
+                minFontSize: 20,
+              ),
             ),
             PropertyBox(
               title: 'Allergies',
-              textbelow: 'Put some tagchips in here',
-            ),
+              textbelow: Wrap(
+                  direction: Axis.horizontal,
+                  alignment: WrapAlignment.start,
+                  runSpacing: 4.0,
+                  spacing: 4.0,
+                  crossAxisAlignment: WrapCrossAlignment.start,
+                  children: [ ActionChip(
+                          backgroundColor: Colors.blue[100],
+                          materialTapTargetSize:
+                              MaterialTapTargetSize.shrinkWrap,
+                          label: Text('Cow\'s Milk?'),
+                          onPressed: () {},
+                  ),
+                  ActionChip(
+                          backgroundColor: Colors.blue[100],
+                          materialTapTargetSize:
+                              MaterialTapTargetSize.shrinkWrap,
+                          label: Text('Tree Nuts'),
+                          onPressed: () {},
+                  ),
+                  ActionChip(
+                          backgroundColor: Colors.grey[100],
+                          materialTapTargetSize:
+                              MaterialTapTargetSize.shrinkWrap,
+                          label: Text('Shellfish'),
+                          onPressed: () {},
+                  ),
+                  ActionChip(
+                          backgroundColor: Colors.grey[100],
+                          materialTapTargetSize:
+                              MaterialTapTargetSize.shrinkWrap,
+                          label: Text('Soy'),
+                          onPressed: () {},
+                  ),
+                  ActionChip(
+                          backgroundColor: Colors.grey[100],
+                          materialTapTargetSize:
+                              MaterialTapTargetSize.shrinkWrap,
+                          label: Text('Fish'),
+                          onPressed: () {},
+                  ),
+                  ActionChip(
+                          backgroundColor: Colors.blue[100],
+                          materialTapTargetSize:
+                              MaterialTapTargetSize.shrinkWrap,
+                          label: Text('Wheat'),
+                          onPressed: () {},
+                  ),
+                  ActionChip(
+                          backgroundColor: Colors.blue[100],
+                          materialTapTargetSize:
+                              MaterialTapTargetSize.shrinkWrap,
+                          label: Text('Eggs'),
+                          onPressed: () {},
+                  ),
+                   ActionChip(
+                          backgroundColor: Colors.blue[100],
+                          materialTapTargetSize:
+                              MaterialTapTargetSize.shrinkWrap,
+                          label: Text('Peanut'),
+                          onPressed: () {},
+                  ),
+                  ])),
             PropertyBox(
               title: 'Properties',
-              textbelow: 'Calories, Saturated/Trans-fat, sugar, sodium',
+              textbelow: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(mainAxisAlignment: MainAxisAlignment.end,children: [Text('Per 100g', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold))],),
+                  Divider(),
+                  Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [Text('Calories: ', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)), Text('301  kCal', style: TextStyle(fontSize: 18))],),
+                  Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [Text('Protein: ', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)), Text('9.0  g', style: TextStyle(fontSize: 18))],),
+                  Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [Text('Sugars: ', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)), Text('0.7  g', style: TextStyle(fontSize: 18))],),
+                  Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [Text('Sodium: ', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)), Text('1140  mg', style: TextStyle(fontSize: 18))],),
+                ],
+              )
             ),
             PropertyBox(
               title: 'Options',
-              textbelow: 'Puffy Pastry Eggtart / Shortcrust Pastry Eggtart',
+              textbelow: AutoSizeText(
+                'Puffy Pastry Eggtart / Shortcrust Pastry Eggtart',
+                maxLines: 3,
+                maxFontSize: 30,
+                minFontSize: 20,
+              ),
             ),
             PropertyBox(
               title: 'See Also/ Categories',
-              textbelow:
-                  'What did other users also looked for \nUsually for (breakfast/snacks/lunch/dinner)?',
+              textbelow: Wrap(
+                direction: Axis.horizontal,
+                  alignment: WrapAlignment.start,
+                  runSpacing: 4.0,
+                  spacing: 4.0,
+                  crossAxisAlignment: WrapCrossAlignment.start,
+                  children: [
+                    ActionChip(
+                          materialTapTargetSize:
+                              MaterialTapTargetSize.shrinkWrap,
+                          label: Text('Cha Chaan Teng'),
+                          onPressed: () {
+                            Navigator.popAndPushNamed(context, '/restaurant');
+                          },
+                  ),
+                  ]
+              ),
             ),
             Divider(
               height: 30,
@@ -247,7 +339,7 @@ class ContentPage extends StatelessWidget {
 
 class PropertyBox extends StatelessWidget {
   final String title;
-  final String textbelow;
+  final Widget textbelow;
   const PropertyBox({
     @required this.title,
     @required this.textbelow,
@@ -256,7 +348,7 @@ class PropertyBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 15.0, top: 8.0),
+      padding: const EdgeInsets.only(left: 15.0, top: 8.0, right: 15.0),
       child: Container(
         padding: EdgeInsets.all(10.0),
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(4.0)),
@@ -273,12 +365,7 @@ class PropertyBox extends StatelessWidget {
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             Divider(),
-            AutoSizeText(
-              textbelow,
-              maxLines: 3,
-              maxFontSize: 30,
-              minFontSize: 20,
-            ),
+            textbelow,
           ],
         ),
       ),
