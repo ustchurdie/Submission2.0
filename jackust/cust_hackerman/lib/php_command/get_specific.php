@@ -17,9 +17,7 @@ else
     echo 'connection failed'. mysqli_error($con);
     
 if (isset($_POST['index'])){ //gets specific info from flutter request
-    $indexchq = $_POST['index'];
-    //$column = $_POST['column'];
-    $sql_stmt = $indexchq;
+    $sql_stmt  = $_POST['index'];
     //SQL select query 
     $result = mysqli_query($con,$sql_stmt);
     //execute SQL statement 
@@ -32,14 +30,18 @@ if (isset($_POST['index'])){ //gets specific info from flutter request
     $i=0; 
     if ($rows){
         while($row = mysqli_fetch_array($result)) {         
-            $final=$row;
+            array_push($response, array("id"=>$row['id'], "name"=>$row['full_names'], 
+                    "gender"=>$row['gender'], "contact"=>$row['contact_no'], "email"=>$row['email'], 
+                    "city"=>$row['city'], "country"=>$row['country']));
 	    } 
     } 
+    //$response['result']=array_values($final);
+    echo json_encode($response);    
 }
-$response['result']=$final;
+else echo "cannot find anything";
+
 mysqli_close($con);
  // tell browser that its a json data
-echo json_encode($response);
  //converting array to JSON string
 return json_encode($response); 
 
