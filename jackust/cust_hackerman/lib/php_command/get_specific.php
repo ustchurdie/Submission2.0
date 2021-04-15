@@ -1,24 +1,46 @@
 <?php
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET, POST');
+header("Access-Control-Allow-Headers: X-Requested-With");
+header('Content-Type: application/json');
 
 $host='localhost';
 $user='root';
 $pass='samhui1234';
-$db='mydb';
+$db='my_person_contacts';
 
+$final=array(); $response=array();
 $con=mysqli_connect($host, $user, $pass, $db);
-if($con)
-    echo 'connected successfully to mydb database';
+if($con) 
+    echo 'connected successfully to mydb database <br>';
 else 
     echo 'connection failed'. mysqli_error($con);
-
-$searchq = $_POST['search'];
-//$searchq = preg_replace("#[^0-9a-z]#i","",$searchq);
-$query = mysql_query($con, "SELECT * FROM personal_info WHERE the_row_name = '%$searchq%'");
-$result = $query->fetch_assoc();
-// fetch the results, since you're expecting a single row, no need to loop
-// this returns an associative array
-$x=$result['1'];  //2nd column
-$y=$result['2'];  //3rd column
+    
+if (isset($_POST['index'])){ //gets specific info from flutter request
+    $indexchq = $_POST['index'];
+    //$column = $_POST['column'];
+    $sql_stmt = $indexchq;
+    //SQL select query 
+    $result = mysqli_query($con,$sql_stmt);
+    //execute SQL statement 
+    if (!$result)     
+        die("Database access failed") ;
+    //output error message if query execution failed 
+    
+    $rows = mysqli_num_rows($result); 
+    // get number of rows returned
+    $i=0; 
+    if ($rows){
+        while($row = mysqli_fetch_array($result)) {         
+            $final=$row;
+	    } 
+    } 
+}
+$response['result']=$final;
 mysqli_close($con);
-return $result;
+ // tell browser that its a json data
+echo json_encode($response);
+ //converting array to JSON string
+return json_encode($response); 
+
 ?>

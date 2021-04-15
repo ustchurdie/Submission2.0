@@ -2,10 +2,23 @@ import 'package:cust_hackerman/Models/route_generator.dart';
 import 'package:cust_hackerman/Pages/foodtemplate_2.dart';
 import 'package:cust_hackerman/Widgets/HomePageWidgets/SearchBox.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 void main() {
   runApp(MyWeb());
 }
+
+/*class _MyHomePageState extends State<MyHomePage> {
+  StreamController<List> _streamController = StreamController<List>();
+  Timer _timer;
+    Future getData() async {
+      var url = 'https://milk-white-reveille.000webhostapp.com/get.php';
+      http.Response response = await http.get(url);
+      List data = json.decode(response.body);
+
+      //Add your data to stream
+      _streamController.add(data);
+  }*/
 
 class MyWeb extends StatelessWidget {
   @override

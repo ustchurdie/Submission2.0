@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.cust_hackerman">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="cust_hackerman"
         android:icon="@mipmap/ic_launcher">
