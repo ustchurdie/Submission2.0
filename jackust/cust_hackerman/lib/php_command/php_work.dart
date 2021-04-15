@@ -1,15 +1,7 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-var settings = new ConnectionSettings(
-  host: 'localhost', 
-  port: 3306,
-  user: 'vetri',
-  password: 'vetrimca',
-  db: 'india'
-);
 
-var conn = await MySqlConnection.connect(settings);
 Future<void> pass_info(String sql_command, String info) async {
     var client = http.Client();
     print('fucntion running');
