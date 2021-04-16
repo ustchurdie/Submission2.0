@@ -4,6 +4,7 @@ import 'package:cust_hackerman/Models/foodbase.dart';
 import 'package:cust_hackerman/Models/route_generator.dart';
 import 'package:cust_hackerman/Models/screen_arguments.dart';
 import 'package:flutter/material.dart';
+import 'package:cust_hackerman/Search/Search.dart';
 
 void main() {
   runApp(MyWeb());
@@ -86,14 +87,14 @@ class _HomeBodyState extends State<HomeBody> {
                             hintStyle:
                                 TextStyle(color: Colors.grey, fontSize: 20)),
                         onSubmitted: (String value) {
-                          Navigator.pushNamed(context, '/searchresult',
+                          SearchRes searchresult= Search(((value.contains(RegExp(
+                              '[\u4E00-\u9FEF]',
+                              unicode: true)))
+                              ? 'Chinese'
+                              : 'English'),value);
+                          Navigator.pushNamed(context, searchresult.path,
                               arguments: ScreenArguments(
-                                  foodId: _controller.text,
-                                  name: (value.contains(RegExp(
-                                          '[\u4E00-\u9FEF]',
-                                          unicode: true)))
-                                      ? '中文'
-                                      : 'English'));
+                                  anything:searchresult.argument));
                           _controller.clear();
                         }),
                   ),

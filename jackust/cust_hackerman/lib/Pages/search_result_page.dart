@@ -8,17 +8,22 @@ import 'package:flutter/material.dart';
 class SearchResultPage extends StatelessWidget {
   static Random random = new Random();
 
-  final String resultword;
-  final String result;
+  dynamic argument;
+  var commentWidgets=List<Widget>.empty(growable: true);
+SearchResultPage({this.argument}){
+  for(int i=0;i<argument.length;i++){
+    var tb=TextButton(onPressed: (){}, child: Text(argument[i][0]));
+    commentWidgets.add(tb);
+  }
+}
 
-  const SearchResultPage({this.result, this.resultword});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('$result',style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),),
+        title: Text('Search Result',style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),),
         backgroundColor: Color.fromRGBO(203, 241, 245, 1),
         leading: IconButton(
           iconSize: kToolbarHeight * 0.5,
@@ -29,7 +34,9 @@ class SearchResultPage extends StatelessWidget {
           },
         ),
       ),
-      body: Center(child: Text('$resultword')),
+      body: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children:commentWidgets),
     );
   }
 }

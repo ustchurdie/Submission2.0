@@ -4,6 +4,8 @@ import 'package:image_picker_web/image_picker_web.dart';
 import 'dart:convert';
 import '../OCR/OCR.dart';
 import 'package:mime/mime.dart';
+import '../Search/Search.dart';
+import '../Models/screen_arguments.dart';
 
 class FoodTemplate3 extends StatefulWidget {
   @override
@@ -14,7 +16,7 @@ class _FoodTemplate3State extends State<FoodTemplate3> {
   final _pickedImages = <Image>[];
   String _imageInfo = '';
 
-  Future<void> _pickImage() async {
+  Future<SearchRes> _pickImage() async {
     Uint8List infos =
     await ImagePickerWeb.getImage(outputType: ImageType.bytes);
     Image fromPicker=new Image.memory(infos);
@@ -22,14 +24,17 @@ class _FoodTemplate3State extends State<FoodTemplate3> {
       setState(() {
         _pickedImages.clear();
         _pickedImages.add(fromPicker);
-
-        String b64="data:image/jpeg;base64,"+base64.encode(infos);
-        print(b64);
-        Post newPost=new Post(base64Image:b64);
-        var p = createPost(
-            body: newPost.toMap());
       });
+
+      String b64="data:image/jpeg;base64,"+base64.encode(infos);
+      print(b64);
+      Post newPost=new Post(base64Image:b64);
+      var p = await createPost(
+          body: newPost.toMap());
+      if(p==null)return null;
+      return Search('Chinese',p);
     }
+    return null;
   }
 
   Future<void> _getImgFile() async {
@@ -89,16 +94,12 @@ class _FoodTemplate3State extends State<FoodTemplate3> {
                   ),
                   ButtonBar(alignment: MainAxisAlignment.center, children: <Widget>[
                     ElevatedButton(
-                      onPressed: _pickImage,
+                      onPressed: ()async{
+                        SearchRes res=await _pickImage();
+                        if(res!=null){Navigator.pushNamed(context, res.path,
+                            arguments: ScreenArguments(
+                                anything:res.argument));}},
                       child: const Text('Select Image'),
-                    ),
-                    ElevatedButton(
-                      onPressed: _getImgFile,
-                      child: const Text('Get Image File'),
-                    ),
-                    ElevatedButton(
-                      onPressed: _getImgInfo,
-                      child: const Text('Get Image Info'),
                     ),
                   ]),
                 ]),
