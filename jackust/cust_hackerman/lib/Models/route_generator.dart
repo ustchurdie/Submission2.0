@@ -21,10 +21,12 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => FoodTemplate1());
       case '/foodtemplate2':
         return MaterialPageRoute(builder: (_) => FoodTemplate2(title: arguments.name, imgPath: arguments.foodId,));
+      case '/foodtemplate2_frommap':
+        return MaterialPageRoute(builder: (_) => FoodTemplate2.frommap(arguments.anything));
       case '/foodtemplate3':
         return MaterialPageRoute(builder: (_) => FoodTemplate3()); 
       case '/searchresult':
-        return MaterialPageRoute(builder: (_) => SearchResultPage(result: arguments.name, resultword: arguments.foodId,));
+        return MaterialPageRoute(builder: (_) => SearchResultPage(argument: arguments.anything,));
       case '/restaurant':
         return MaterialPageRoute(builder: (_) => RestaurantPage(/*title: arguments.name*/));
       case '/foodlist':
