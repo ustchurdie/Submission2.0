@@ -7,11 +7,6 @@
   
   main.dart only list the initial home page
 
-  routegenerator.dart organise all the page routes
-
-  The foodtemplate_2.dart is the major UI of the whole app
-
-
   foodcard.dart shows the "card" face of the food, where the "more" button helps navigate to the food page (currently foodtemplate2.dart), will modify later
   main.dart contains: the image picker button and textfield (for filtering chinese character)
   
