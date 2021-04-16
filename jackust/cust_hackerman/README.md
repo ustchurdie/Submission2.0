@@ -1,7 +1,7 @@
 # cust_hackerman
 
   
-  We used flutter sdk and dart as our main language, with amazon AWS as our database, using php as our linkage.
+  We used flutter sdk and dart as our main language
   Currently, we only developed the UI, display of information and the image searching function due to the limited time.
   We planned to develop a webpage and app.
   
