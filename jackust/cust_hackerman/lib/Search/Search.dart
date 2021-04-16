@@ -1,4 +1,4 @@
- class SearchRes{
+class SearchRes{
   final String path;
   final dynamic argument;
   SearchRes({this.path,this.argument});
@@ -12,6 +12,8 @@ dynamic Search(String lang,String searchtext){
     return SearchRes(path:'/foodtemplate2_frommap',argument: m);
   }
   else {
-    return SearchRes(path:'/searchresult',argument: List.filled(10,List.filled(2, 'asdsad')));
+    return SearchRes(path:'/searchresult',argument: [['This','samplepath'],['Is','samplepath'],['A','samplepath'],['Demostration','samplepath'],['For','samplepath'],['Translated','samplepath'],['Blocks','samplepath'],['To','samplepath'],['Pages','samplepath']]);
   }
 }
+
+

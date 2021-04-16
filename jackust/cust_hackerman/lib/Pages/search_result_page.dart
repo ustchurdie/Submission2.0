@@ -12,7 +12,7 @@ class SearchResultPage extends StatelessWidget {
   var commentWidgets=List<Widget>.empty(growable: true);
 SearchResultPage({this.argument}){
   for(int i=0;i<argument.length;i++){
-    var tb=TextButton(onPressed: (){}, child: Text(argument[i][0]));
+    var tb=TextButton(onPressed: (){}, child: Text(argument[i][0],style: TextStyle(fontSize:25)));
     commentWidgets.add(tb);
   }
 }
