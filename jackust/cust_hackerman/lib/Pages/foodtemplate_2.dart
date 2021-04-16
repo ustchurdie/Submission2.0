@@ -10,9 +10,9 @@ class FoodTemplate2 extends StatelessWidget {
   final String title;
   final String imgPath;
 
-  const FoodTemplate2({Key key, @required this.title, this.imgPath})
+FoodTemplate2({Key key, @required this.title, this.imgPath})
       : super(key: key);
-  @override
+FoodTemplate2.frommap(Map argument):title=argument['title'],imgPath=argument['imgPath'];
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,

@@ -42,22 +42,24 @@ class PR{
   }
 }
 
-Future createPost({Map body}) async {
+Future<String> createPost({Map body}) async {
   var url="https://api.ocr.space/parse/image";
   return http.post(Uri.parse(url), body: body).then((http.Response response) {
-    final int statusCode = response.statusCode;
+     final int statusCode = response.statusCode;
 
     if (statusCode < 200 || statusCode > 400 || json == null) {
       throw new Exception("Error while fetching data");
     }
     Map<String,dynamic>map=json.decode(response.body);
-    print(response.body);
+    //print(response.body);
     Res r=Res.fromJson(map);
-    print("~~~~~~~~~~~~~~~~");
-    print(r.OCRExitCode.toString());
-    print("~~~~~~~~~~~~~~~~");
+    if(r.OCRExitCode!=1){
+      print("Error Occurred. Please Try Again.");
+      return null;
+    }
+    print("Text recognized:");
     print(r.ParsedResults.ParsedText);
+    return r.ParsedResults.ParsedText;
 
-    //return something
   });
 }
