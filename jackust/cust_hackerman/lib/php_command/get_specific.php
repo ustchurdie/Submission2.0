@@ -34,7 +34,6 @@ if (isset($_POST['index'])){ //gets specific info from flutter request
                     "foodDescription"=>$row['food_description'], "imageUrl"=>$row['image_url']));
 	    }
     } 
-    //$response['result']=array_values($final);
     echo json_encode(array_reverse($response));    
 }
 else echo "cannot find anything";
@@ -42,6 +41,4 @@ else echo "cannot find anything";
 mysqli_close($con);
  // tell browser that its a json data
  //converting array to JSON string
-//return json_encode($response); 
-
 ?>

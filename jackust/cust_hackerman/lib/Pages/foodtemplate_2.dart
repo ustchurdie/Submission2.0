@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 class FoodTemplate2 extends StatelessWidget {
   final String title;
   final String imgPath;
-
+  //final List<Food> foods;
 FoodTemplate2({Key key, @required this.title, this.imgPath})
       : super(key: key);
 FoodTemplate2.frommap(Map argument):title=argument['title'],imgPath=argument['imgPath'];
