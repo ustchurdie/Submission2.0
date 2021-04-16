@@ -2,8 +2,6 @@ import 'dart:async';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-String sqlCommand = 'SELECT * FROM `food_name`';
-
 class Foods {
   List<Food> foods;
 
@@ -42,7 +40,7 @@ List<Food> parseFood(String responseBody) {
   return parsed.map<Food>((json) => Food.fromJson(json)).toList();
 }
 
-Future<List<Food>> downloadJSON() async {
+Future<List<Food>> downloadJSON(String sqlCommand) async {
   print('fucntion running');
   String phpurl = "http://127.0.0.1/get_specific.php";
   final url = Uri.parse(phpurl);
@@ -54,9 +52,9 @@ Future<List<Food>> downloadJSON() async {
   if (statusCode == 200) {
     print("connect successful");
     List<dynamic> body = jsonDecode(response.body);
-    print(body[0]);
+    //print(body[0]);
     List<Food> food = body.map((dynamic e) => Food.fromJson(e)).toList();
-    print(food);
+    //print(food);
     return food;
   } else {
     // If the API call was fail, throw an error.
@@ -68,14 +66,7 @@ Future<List<Food>> downloadJSON() async {
   }
 }
 
-/*void testing(){
-  final List<Food>foods;
-  print(this.foods);
-}*/
 void main() {
   print('Hello_world HaHa!');
-  downloadJSON();
-  //print(Food());
-  //testing();
-  //print(food.name);
+  downloadJSON('SELECT * FROM `food_name`');
 }
